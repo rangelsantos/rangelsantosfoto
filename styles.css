@@ -1,0 +1,449 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Menu Superior Fixo */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #cccccc;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Carrossel de Fotos */
+.carousel-section {
+    margin-top: 80px;
+    padding: 40px 0;
+    background-color: #0a0a0a;
+}
+
+.carousel-container {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    padding: 0 40px;
+    height: 600px;
+    align-items: center;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.carousel-slide img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+}
+
+/* Controles do Carrossel */
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 15px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background-color: #ffffff;
+    transform: scale(1.3);
+}
+
+/* Modal do Carrossel */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+.modal-close:hover {
+    color: #cccccc;
+}
+
+/* Seção de Introdução */
+.intro-section {
+    padding: 100px 40px;
+    text-align: center;
+    background-color: #111111;
+}
+
+.intro-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro-quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #cccccc;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.intro-title {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.intro-subtitle {
+    font-size: 20px;
+    color: #cccccc;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Seção de Categorias */
+.categories-section {
+    padding: 100px 40px;
+    background-color: #0a0a0a;
+}
+
+.categories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.category-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+}
+
+.category-card a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 60px 30px 30px;
+    color: #ffffff;
+}
+
+.category-info h3 {
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.category-info p {
+    font-size: 16px;
+    color: #cccccc;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.category-link {
+    font-size: 24px;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-link {
+    transform: translateX(10px);
+}
+
+/* Rodapé */
+.footer {
+    background-color: #111111;
+    padding: 60px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #ffffff;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #cccccc;
+    transform: translateY(-3px);
+}
+
+.footer p {
+    font-size: 16px;
+    color: #cccccc;
+    letter-spacing: 0.5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-menu {
+        gap: 20px;
+    }
+    
+    .carousel-track {
+        padding: 0 20px;
+        height: 450px;
+    }
+    
+    .carousel-slide {
+        height: 450px;
+    }
+    
+    .carousel-controls {
+        margin-top: 20px;
+    }
+    
+    .carousel-dots {
+        gap: 10px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .intro-title {
+        font-size: 36px;
+    }
+    
+    .categories-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .category-info h3 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+    }
+    
+    .carousel-track {
+        height: 375px;
+    }
+    
+    .carousel-slide {
+        height: 375px;
+    }
+    
+    .carousel-controls {
+        margin-top: 15px;
+    }
+    
+    .carousel-dots {
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .intro-section {
+        padding: 60px 20px;
+    }
+    
+    .intro-title {
+        font-size: 28px;
+    }
+    
+    .categories-section {
+        padding: 60px 20px;
+    }
+    
+    .category-info {
+        padding: 40px 20px 20px;
+    }
+    
+    .category-info h3 {
+        font-size: 24px;
+    }
+    
+    .footer {
+        padding: 40px 20px;
+    }
+}
+

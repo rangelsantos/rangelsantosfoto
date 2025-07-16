@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangel Santos - Fotógrafo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Menu Superior Fixo -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>RANGEL SANTOS</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Carrossel de Fotos -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_01.jpg')">
+                    <img src="assets/carousel/carousel_01.jpg" alt="Fotografia 1">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_02.jpg')">
+                    <img src="assets/carousel/carousel_02.jpg" alt="Fotografia 2">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_03.jpg')">
+                    <img src="assets/carousel/carousel_03.jpg" alt="Fotografia 3">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_04.jpg')">
+                    <img src="assets/carousel/carousel_04.jpg" alt="Fotografia 4">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_05.jpg')">
+                    <img src="assets/carousel/carousel_05.jpg" alt="Fotografia 5">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_06.jpg')">
+                    <img src="assets/carousel/carousel_06.jpg" alt="Fotografia 6">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_07.jpg')">
+                    <img src="assets/carousel/carousel_07.jpg" alt="Fotografia 7">
+                </div>
+                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_08.jpg')">
+                    <img src="assets/carousel/carousel_08.jpg" alt="Fotografia 8">
+                </div>
+            </div>
+            
+            <!-- Controles de navegação -->
+            <div class="carousel-controls">
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                    <span class="dot" onclick="goToSlide(5)"></span>
+                    <span class="dot" onclick="goToSlide(6)"></span>
+                    <span class="dot" onclick="goToSlide(7)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Introdução -->
+    <section class="intro-section">
+        <div class="intro-container">
+            <p class="intro-quote">Fotografar o que é real, ensinar o que é prático.</p>
+            <h2 class="intro-title">Fotografia de casamento e Estúdio no Brasil</h2>
+            <p class="intro-subtitle">Feliz em ter você aqui.</p>
+        </div>
+    </section>
+
+    <!-- Seção de Categorias -->
+    <section class="categories-section">
+        <div class="categories-container">
+            <div class="category-card">
+                <a href="casamento.html">
+                    <img src="assets/portfolio/casamento/casamento_01.jpg" alt="Casamentos">
+                    <div class="category-info">
+                        <h3>Casamentos</h3>
+                        <p>Fotografia Atemporal</p>
+                        <span class="category-link">→</span>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="ensaios.html">
+                    <img src="assets/portfolio/ensaios/ensaio_01.jpg" alt="Ensaios">
+                    <div class="category-info">
+                        <h3>Ensaios</h3>
+                        <p>Delicadeza & Elegância</p>
+                        <span class="category-link">→</span>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="retratos.html">
+                    <img src="assets/portfolio/retratos/retrato_01.jpg" alt="Retratos">
+                    <div class="category-info">
+                        <h3>Retratos</h3>
+                        <p>Seu momento, nosso olhar</p>
+                        <span class="category-link">→</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Carrossel -->
+    <div id="carouselModal" class="modal">
+        <span class="modal-close" onclick="closeCarouselModal()">&times;</span>
+        <img class="modal-content" id="carouselModalImg">
+    </div>
+
+    <script>
+        // Variáveis do carrossel
+        let currentSlide = 0;
+        const totalSlides = 8;
+        let autoSlideInterval;
+
+        // Função para abrir modal do carrossel
+        function openCarouselModal(imageSrc) {
+            document.getElementById('carouselModal').style.display = 'flex';
+            document.getElementById('carouselModalImg').src = imageSrc;
+        }
+
+        // Função para fechar modal do carrossel
+        function closeCarouselModal() {
+            document.getElementById('carouselModal').style.display = 'none';
+        }
+
+        // Função para ir para um slide específico
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+            updateDots();
+            resetAutoSlide();
+        }
+
+        // Função para atualizar a posição do carrossel
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const slideWidth = track.children[0].offsetWidth + 20; // largura + gap
+            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+
+        // Função para atualizar os dots
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Função para avançar automaticamente
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            updateDots();
+        }
+
+        // Função para resetar o auto slide
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 4000);
+        }
+
+        // Inicializar carrossel
+        document.addEventListener('DOMContentLoaded', function() {
+            resetAutoSlide();
+        });
+
+        // Fechar modal ao clicar fora da imagem
+        window.onclick = function(event) {
+            const modal = document.getElementById('carouselModal');
+            if (event.target === modal) {
+                closeCarouselModal();
+            }
+        }
+    </script>
+</body>
+</html>
+

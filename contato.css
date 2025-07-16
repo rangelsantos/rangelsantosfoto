@@ -1,0 +1,312 @@
+/* Estilos específicos para a página de contato */
+
+/* Seção de Contato */
+.contact-section {
+    margin-top: 80px;
+    padding: 100px 40px;
+    background-color: #0a0a0a;
+    min-height: calc(100vh - 80px);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.contact-header h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.contact-header p {
+    font-size: 18px;
+    color: #cccccc;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Seção do Fotógrafo */
+.photographer-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    margin-bottom: 80px;
+    align-items: center;
+}
+
+.photographer-image {
+    display: flex;
+    justify-content: center;
+}
+
+.photographer-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+}
+
+.photographer-info h2 {
+    font-size: 36px;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.photographer-info p {
+    font-size: 16px;
+    color: #cccccc;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+/* Formulário de Contato */
+.contact-form-container {
+    background-color: #111111;
+    padding: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-form-container h3 {
+    font-size: 24px;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ffffff;
+    background-color: #111111;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #666666;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background-color: #ffffff;
+    color: #0a0a0a;
+    border: none;
+    padding: 18px 40px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #cccccc;
+    transform: translateY(-2px);
+}
+
+/* Informações de Contato */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 60px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item h3 {
+    font-size: 24px;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.contact-item a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #ffffff;
+}
+
+.contact-item p {
+    color: #cccccc;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 60px 20px;
+    }
+    
+    .contact-header h1 {
+        font-size: 36px;
+    }
+    
+    .contact-header p {
+        font-size: 16px;
+    }
+    
+    .photographer-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .photographer-info h2 {
+        font-size: 28px;
+    }
+    
+    .photographer-info p {
+        font-size: 15px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .contact-form-container {
+        padding: 40px 30px;
+    }
+    
+    .contact-info {
+        padding-top: 0;
+        gap: 40px;
+    }
+    
+    .contact-item h3 {
+        font-size: 20px;
+    }
+    
+    .contact-item a,
+    .contact-item p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-header h1 {
+        font-size: 28px;
+    }
+    
+    .photographer-info h2 {
+        font-size: 24px;
+    }
+    
+    .photographer-info p {
+        font-size: 14px;
+    }
+    
+    .contact-form-container {
+        padding: 30px 20px;
+    }
+    
+    .contact-form-container h3 {
+        font-size: 20px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+    }
+    
+    .submit-btn {
+        padding: 15px 30px;
+        font-size: 14px;
+    }
+    
+    .contact-item h3 {
+        font-size: 18px;
+    }
+    
+    .contact-item a,
+    .contact-item p {
+        font-size: 14px;
+    }
+}
+
