@@ -121,12 +121,20 @@ body {
 .carousel-controls {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     margin-top: 30px;
+    gap: 0;
+    min-height: 40px;
+    padding-bottom: 8px;
 }
 
 .carousel-dots {
     display: flex;
     gap: 15px;
+    align-items: center;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .dot {
@@ -136,6 +144,9 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-bottom: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 }
 
 .dot:hover {
@@ -146,6 +157,8 @@ body {
 .dot.active {
     background-color: #ffffff;
     transform: scale(1.3);
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 /* Modal do Carrossel */
@@ -353,38 +366,65 @@ body {
     }
     
     .carousel-track {
-        padding: 0 20px;
-        height: 450px;
+        padding: 0 5vw;
+        height: 44vw;
+        min-height: 220px;
+        max-height: 60vw;
     }
     
     .carousel-slide {
-        height: 450px;
+        height: 44vw;
+        min-height: 220px;
+        max-height: 60vw;
     }
     
     .carousel-controls {
-        margin-top: 20px;
+        margin-top: 14px;
+        min-height: 32px;
+        padding-bottom: 6px;
     }
-    
     .carousel-dots {
-        gap: 10px;
+        gap: 8px;
     }
-    
     .dot {
         width: 10px;
         height: 10px;
     }
-    
     .intro-title {
         font-size: 36px;
     }
-    
     .categories-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
     .category-info h3 {
         font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-track {
+        height: 52vw;
+        min-height: 150px;
+        max-height: 75vw;
+        padding: 0 2vw;
+    }
+    .carousel-slide {
+        height: 52vw;
+        min-height: 150px;
+        max-height: 75vw;
+    }
+    .carousel-controls {
+        margin-top: 10px;
+        min-height: 26px;
+        padding-bottom: 4px;
+    }
+    .carousel-dots {
+        gap: 6px;
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
     }
 }
 
@@ -446,4 +486,3 @@ body {
         padding: 40px 20px;
     }
 }
-
