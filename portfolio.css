@@ -187,12 +187,10 @@
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    max-width: calc(29% - 14px);
-    min-width: 512px;
+    display: block;
+    break-inside: avoid;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .gallery-item:hover {
