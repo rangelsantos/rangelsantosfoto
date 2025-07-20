@@ -374,29 +374,34 @@
 }
 
 @media (max-width: 480px) {
+
     .portfolio-header h1,
     .gallery-header h1 {
         font-size: 28px;
     }
-    
+
     .portfolio-header p,
     .gallery-header p {
         font-size: 16px;
     }
-    
+
+    .gallery-header {
+        margin-top: 90px;
+    }
+
     .category-overlay h3 {
         font-size: 24px;
     }
-    
+
     .gallery-grid {
         gap: 10px;
     }
-    
+
     .gallery-item {
         max-width: 100%;
         min-width: auto;
     }
-    
+
     .category-nav-item h3 {
         font-size: 20px;
     }
