@@ -164,8 +164,15 @@
         // Função para atualizar a posição do carrossel
         function updateCarousel() {
             const track = document.getElementById('carouselTrack');
-            const slideWidth = track.children[0].offsetWidth + 20; // largura + gap
-            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+            let totalOffset = 0;
+            
+            // Calcular offset acumulativo até o slide atual
+            for (let i = 0; i < currentSlide; i++) {
+                const slide = track.children[i];
+                totalOffset += slide.offsetWidth + 20; // largura do slide + gap
+            }
+            
+            track.style.transform = `translateX(-${totalOffset}px)`;
         }
 
         // Função para atualizar os dots

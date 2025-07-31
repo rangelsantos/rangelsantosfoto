@@ -131,6 +131,7 @@ body {
     width: auto;
     max-width: none;
     object-fit: contain;
+    min-width: 200px; /* Largura mínima para fotos verticais */
 }
 
 /* Controles do Carrossel */
