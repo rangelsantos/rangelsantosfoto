@@ -15,10 +15,11 @@
 
 .portfolio-header h1 {
     font-size: 48px;
-    font-weight: 300;
+    font-weight: 300; /* leve como padrão do site */
     margin-bottom: 30px;
     letter-spacing: 2px;
     color: #ffffff;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .portfolio-header p {
@@ -26,6 +27,8 @@
     color: #cccccc;
     line-height: 1.6;
     letter-spacing: 0.5px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 300; /* manter leve */
 }
 
 /* Categorias do Portfólio */
@@ -85,8 +88,9 @@
 
 .category-overlay h3 {
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 300; /* manter leve */
     letter-spacing: 1px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 /* Galeria de Imagens */
@@ -110,16 +114,19 @@
 
 .gallery-header h1 {
     font-size: 48px;
-    font-weight: 300;
+    font-weight: 300; /* leve */
     margin-bottom: 20px;
     letter-spacing: 2px;
     color: #ffffff;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .gallery-header p {
     font-size: 18px;
     color: #cccccc;
     letter-spacing: 0.5px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 300;
 }
 
 .gallery-grid {
@@ -309,9 +316,10 @@
 
 .category-nav-item h3 {
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 300; /* leve */
     color: #ffffff;
     letter-spacing: 1px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .category-nav-item p {
@@ -319,6 +327,8 @@
     color: #cccccc;
     margin-top: 10px;
     letter-spacing: 0.5px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 300;
 }
 
 /* Responsividade */

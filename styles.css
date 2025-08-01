@@ -5,12 +5,14 @@
     box-sizing: border-box;
 }
 
+/* Tipografia padrão do site alinhada ao header do portfólio */
 body {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     background-color: #0a0a0a;
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
+    font-weight: 300; /* leve, igual ao .portfolio-header */
 }
 
 /* Menu Superior Fixo */
@@ -37,7 +39,7 @@ body {
 
 .logo h1 {
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 300; /* manter leve */
     letter-spacing: 2px;
     color: #ffffff;
     display: inline-block;
@@ -68,7 +70,7 @@ body {
     color: #ffffff;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 300; /* leve por padrão */
     letter-spacing: 1px;
     transition: color 0.3s ease;
     position: relative;
@@ -204,11 +206,10 @@ body {
     top: 20px;
     right: 35px;
     color: #ffffff;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', Arial, Helvetica, sans-serif; /* padroniza com Inter */
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 300; /* mantém leve */
     letter-spacing: 2px;
-    color: #ffffff;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
