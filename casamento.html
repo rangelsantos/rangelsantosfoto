@@ -42,28 +42,28 @@
             </div>
             
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_01.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_01.jpg">
                     <img src="assets/portfolio/casamento/casamento_01.jpg" alt="Casamento 1">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_02.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_02.jpg">
                     <img src="assets/portfolio/casamento/casamento_02.jpg" alt="Casamento 2">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_03.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_03.jpg">
                     <img src="assets/portfolio/casamento/casamento_03.jpg" alt="Casamento 3">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_04.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_04.jpg">
                     <img src="assets/portfolio/casamento/casamento_04.jpg" alt="Casamento 4">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_05.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_05.jpg">
                     <img src="assets/portfolio/casamento/casamento_05.jpg" alt="Casamento 5">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_06.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_06.jpg">
                     <img src="assets/portfolio/casamento/casamento_06.jpg" alt="Casamento 6">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_07.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_07.jpg">
                     <img src="assets/portfolio/casamento/casamento_07.jpg" alt="Casamento 7">
                 </div>
-                <div class="gallery-item" onclick="openModal('assets/portfolio/casamento/casamento_08.jpg')">
+                <div class="gallery-item" data-full="assets/portfolio/casamento/casamento_08.jpg">
                     <img src="assets/portfolio/casamento/casamento_08.jpg" alt="Casamento 8">
                 </div>
             </div>
@@ -88,11 +88,18 @@
         </div>
     </section>
 
-    <!-- Modal para visualização de imagens -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
+    <!-- Modal para visualização de imagens com navegação -->
+    <div id="imageModal" class="modal">
         <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <span class="modal-close" id="lightboxClose">&times;</span>
+            <div class="lightbox-caption" id="lightboxCounter">1/1</div>
+            <div class="lightbox-arrow left" id="lightboxPrev" aria-label="Anterior">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </div>
             <img id="modalImage" src="" alt="Imagem ampliada">
+            <div class="lightbox-arrow right" id="lightboxNext" aria-label="Próxima">
+                <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
         </div>
     </div>
 
@@ -119,24 +126,104 @@
     </footer>
 
     <script>
-        function openModal(imageSrc) {
+        (function() {
+            const grid = document.querySelector('.gallery-grid');
+            const items = Array.from(grid.querySelectorAll('.gallery-item'));
             const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = imageSrc;
-            modal.classList.add('active');
-        }
+            const img = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const counter = document.getElementById('lightboxCounter');
 
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.classList.remove('active');
-        }
+            let idx = 0;
 
-        // Fechar modal com tecla ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
+            function update() {
+                const total = items.length;
+                const src = items[idx].getAttribute('data-full') || items[idx].querySelector('img')?.src;
+                img.src = src;
+                counter.textContent = (idx + 1) + '/' + total;
             }
-        });
+
+            function openAt(i) {
+                idx = (i + items.length) % items.length;
+                update();
+                modal.classList.add('active');
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+            }
+
+            function next() { idx = (idx + 1) % items.length; update(); }
+            function prev() { idx = (idx - 1 + items.length) % items.length; update(); }
+
+            // Click: abrir
+            items.forEach((item, i) => {
+                item.addEventListener('click', () => openAt(i));
+            });
+
+            // Botões
+            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+            closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
+
+            // Fechar ao clicar fora da imagem
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Teclado
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') next();
+                if (e.key === 'ArrowLeft') prev();
+            });
+
+            // Gestos de arrastar (touch) para avançar/voltar
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+
+            function onTouchStart(ev) {
+                if (!modal.classList.contains('active')) return;
+                const t = ev.touches[0];
+                touchStartX = t.clientX;
+                touchStartY = t.clientY;
+                isSwiping = true;
+            }
+
+            function onTouchMove(ev) {
+                if (!isSwiping) return;
+                const dx = ev.touches[0].clientX - touchStartX;
+                const dy = ev.touches[0].clientY - touchStartY;
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    ev.preventDefault(); // evita scroll vertical quando arrastando horizontal
+                }
+            }
+
+            function onTouchEnd(ev) {
+                if (!isSwiping) return;
+                isSwiping = false;
+                const touch = ev.changedTouches[0];
+                const dx = touch.clientX - touchStartX;
+                const dy = touch.clientY - touchStartY;
+
+                const horizontal = Math.abs(dx) > Math.abs(dy);
+                const threshold = Math.min(window.innerWidth * 0.12, 80); // ~12% da largura ou 80px
+
+                if (horizontal && Math.abs(dx) > threshold) {
+                    if (dx < 0) next();  // arrastar para esquerda -> próxima
+                    else prev();         // arrastar para direita -> anterior
+                }
+            }
+
+            // Aplicar eventos no overlay completo (modal)
+            modal.addEventListener('touchstart', onTouchStart, { passive: true });
+            modal.addEventListener('touchmove', onTouchMove, { passive: false });
+            modal.addEventListener('touchend', onTouchEnd, { passive: true });
+        })();
     </script>
 </body>
 </html>
