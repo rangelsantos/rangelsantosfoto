@@ -257,7 +257,7 @@
 
     /* Fade + slide */
     opacity: 1;
-    transition: opacity 260ms ease-in-out, transform 260ms ease-in-out;
+    transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
     will-change: opacity, transform;
 }
 
