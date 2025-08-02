@@ -129,8 +129,8 @@ body {
 /* Botão hamburger (mobile) */
 .hamburger {
     display: none;
-    width: 36px;
-    height: 30px;
+    width: 30.6px;   /* 36px * 0.85 (redução de ~15%) */
+    height: 25.5px;  /* 30px * 0.85 */
     position: relative;
     cursor: pointer;
 }
@@ -144,20 +144,21 @@ body {
     transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
 }
 
-.hamburger span:nth-child(1) { top: 4px; }
-.hamburger span:nth-child(2) { top: 14px; }
-.hamburger span:nth-child(3) { top: 24px; }
+/* Reposiciona as barras proporcionalmente após a redução */
+.hamburger span:nth-child(1) { top: 3.4px; }   /* 4px * 0.85 */
+.hamburger span:nth-child(2) { top: 11.9px; }  /* 14px * 0.85 */
+.hamburger span:nth-child(3) { top: 20.4px; }  /* 24px * 0.85 */
 
 /* Estado ativo (X) */
 .nav-open .hamburger span:nth-child(1) {
-    top: 14px;
+    top: 11.9px; /* 14px * 0.85 */
     transform: rotate(45deg);
 }
 .nav-open .hamburger span:nth-child(2) {
     opacity: 0;
 }
 .nav-open .hamburger span:nth-child(3) {
-    top: 14px;
+    top: 11.9px; /* 14px * 0.85 */
     transform: rotate(-45deg);
 }
 
@@ -533,35 +534,49 @@ body {
 
 /* Responsividade */
 @media (max-width: 768px) {
+    /* Header grid and consistent lateral inset */
     .nav-container {
         grid-template-columns: auto auto; /* logo | hamburger */
         align-items: center;
-        padding: 0 20px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
-    /* Esconde menu e contatos no topo no mobile; usar painel deslizante */
+    /* Reduce logo size and align it to the left edge inset */
+    .logo {
+        justify-content: flex-start;
+    }
+    .logo-img {
+        height: 44px; /* smaller on mobile for harmony */
+        margin-right: 8px;
+    }
+
+    /* Hide desktop nav/contacts on mobile */
     .nav-menu,
     .header-contacts {
         display: none;
     }
 
+    /* Hamburger aligned to the same inset as the right padding */
     .hamburger {
         display: block;
         justify-self: end;
+        /* ensure touch target is not flush with the viewport edge */
+        margin-right: 0;
     }
 
-    /* Painel ocupa largura máxima abaixo do header */
+    /* Mobile panel spans full width inside safe insets */
     .mobile-panel {
         width: 100%;
-        padding: 0 20px 12px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-bottom: 12px;
+        box-sizing: border-box;
     }
 
-    /* Centraliza visualmente a lista no painel mobile */
-    .mobile-nav {
-        align-items: center;
-    }
-
-    /* Centraliza visualmente a lista no painel mobile */
+    /* Center list items in mobile panel */
     .mobile-nav {
         align-items: center;
     }
@@ -630,16 +645,22 @@ body {
 }
 
 @media (max-width: 480px) {
+    /* slightly tighter vertical padding to balance reduced logo size */
     .navbar {
-        padding: 15px 0;
+        padding: 12px 0;
     }
     
     .logo h1 {
         font-size: 20px;
     }
+
+    /* Ensure the logo remains compact on very small devices */
+    .logo-img {
+        height: 40px;
+    }
     
     .nav-link {
-        font-size: 16px; /* um pouco maior para toque */
+        font-size: 16px; /* touch-friendly */
     }
 
     .mobile-nav a {
@@ -760,14 +781,7 @@ body {
 
 /* Harmonize left/right header paddings so logo and mobile menu share the same lateral spacing */
 @media (max-width: 768px) {
-  /* Reduce header side padding to bring the logo closer to the edge,
-     matching the hamburger's safe offset for visual harmony */
-  .navbar .nav-container {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-  }
-
-  /* Keep hamburger aligned to the same inset for symmetry */
+  /* already set via the main mobile block above; keep hamburger safe inset explicit */
   .hamburger {
     right: max(16px, env(safe-area-inset-right));
   }
