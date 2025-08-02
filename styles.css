@@ -31,10 +31,16 @@ body {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* logo | nav | contacts */
     align-items: center;
+    gap: 24px;
     padding: 0 40px;
+}
+
+/* Aproxima o bloco central (nav) dos contatos, reduzindo espaço livre à direita do nav */
+.nav-container > .nav-menu {
+    margin-right: 8px; /* pequena aproximação visual dos ícones */
 }
 
 .logo h1 {
@@ -64,6 +70,7 @@ body {
     display: flex;
     list-style: none;
     gap: 40px;
+    justify-content: flex-end; /* empurra a navegação para perto dos ícones */
 }
 
 .nav-link {
@@ -95,6 +102,119 @@ body {
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 100%;
+}
+
+/* Links de contato no header */
+.header-contacts {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.header-contacts a {
+    color: #ffffff !important; /* garante branco também no mobile */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.header-contacts a:hover {
+    color: #cccccc;
+    transform: translateY(-2px);
+}
+
+/* Botão hamburger (mobile) */
+.hamburger {
+    display: none;
+    width: 36px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.hamburger span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+}
+
+.hamburger span:nth-child(1) { top: 4px; }
+.hamburger span:nth-child(2) { top: 14px; }
+.hamburger span:nth-child(3) { top: 24px; }
+
+/* Estado ativo (X) */
+.nav-open .hamburger span:nth-child(1) {
+    top: 14px;
+    transform: rotate(45deg);
+}
+.nav-open .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+.nav-open .hamburger span:nth-child(3) {
+    top: 14px;
+    transform: rotate(-45deg);
+}
+
+/* Menu mobile */
+.mobile-panel {
+    display: none;
+}
+
+.nav-open .mobile-panel {
+    display: block;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    list-style: none;
+    padding: 18px 0 0;
+    margin: 0;
+    border-top: 0; /* remove a barra/linha abaixo do menu */
+}
+
+/* Remove a linha/underline animada dos links dentro do painel mobile */
+.mobile-panel .nav-link::after {
+    display: none !important;
+    width: 0 !important;
+}
+
+.mobile-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding: 8px 0;
+    display: block;
+    text-align: center; /* Centraliza itens do menu no painel mobile */
+}
+
+/* Container dos contatos no painel mobile */
+.mobile-contacts {
+    display: flex;
+    justify-content: center; /* Centraliza os ícones no painel mobile */
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0 4px;
+    border: 0; /* remove qualquer barra/linha */
+}
+.mobile-contacts a {
+    color: #ffffff !important; /* corrige cor estranha dos ícones no mobile */
+}
+
+/* Garante que qualquer SVG herdará a cor branca no mobile */
+.mobile-contacts a svg,
+.header-contacts a svg {
+    color: currentColor;
+    fill: currentColor;
 }
 
 /* Carrossel de Fotos */
@@ -375,15 +495,38 @@ body {
 /* Responsividade */
 @media (max-width: 768px) {
     .nav-container {
+        grid-template-columns: auto auto; /* logo | hamburger */
+        align-items: center;
         padding: 0 20px;
-        flex-direction: column;
-        gap: 20px;
     }
-    
-    .nav-menu {
-        gap: 20px;
+
+    /* Esconde menu e contatos no topo no mobile; usar painel deslizante */
+    .nav-menu,
+    .header-contacts {
+        display: none;
     }
-    
+
+    .hamburger {
+        display: block;
+        justify-self: end;
+    }
+
+    /* Painel ocupa largura máxima abaixo do header */
+    .mobile-panel {
+        width: 100%;
+        padding: 0 20px 12px;
+    }
+
+    /* Centraliza visualmente a lista no painel mobile */
+    .mobile-nav {
+        align-items: center;
+    }
+
+    /* Centraliza visualmente a lista no painel mobile */
+    .mobile-nav {
+        align-items: center;
+    }
+
     .carousel-track {
         padding: 0 5vw;
         height: 44vw;
@@ -457,7 +600,17 @@ body {
     }
     
     .nav-link {
-        font-size: 14px;
+        font-size: 16px; /* um pouco maior para toque */
+    }
+
+    .mobile-nav a {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+
+    .mobile-contacts a {
+        width: 32px;
+        height: 32px;
     }
     
     .carousel-track {
