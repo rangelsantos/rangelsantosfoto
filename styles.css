@@ -215,8 +215,12 @@ body {
     font-weight: 300;
     letter-spacing: 1px;
     padding: 8px 0;
-    display: block;
-    text-align: center; /* Centraliza itens do menu no painel mobile */
+    display: inline-flex;     /* usa flex para alinhar baseline de possíveis ícones futuros */
+    align-items: center;      /* garante centralização vertical do conteúdo */
+    justify-content: center;  /* mantém centralizado como antes */
+    gap: 8px;                 /* caso texto+ícone, espaço uniforme */
+    text-align: center;       /* Centraliza itens do menu no painel mobile */
+    line-height: 1.2;         /* altura de linha consistente com sublinhado */
 }
 
 /* Container dos contatos no painel mobile */
@@ -228,8 +232,22 @@ body {
     padding: 16px 0 4px;
     border: 0; /* remove qualquer barra/linha */
 }
+
+/* Garantir alinhamento perfeito dos ícones com o texto (baseline) */
 .mobile-contacts a {
     color: #ffffff !important; /* corrige cor estranha dos ícones no mobile */
+    display: inline-flex;
+    align-items: center;     /* alinha verticalmente o SVG ao centro do link */
+    justify-content: center;
+    line-height: 1;          /* evita deslocamento por linha */
+    vertical-align: middle;  /* baseline consistente */
+}
+
+/* Normaliza o box do SVG para centralizar */
+.mobile-contacts a svg {
+    display: block;          /* remove espaço extra inline */
+    width: 22px;
+    height: 22px;
 }
 
 /* Garante que qualquer SVG herdará a cor branca no mobile */
@@ -237,12 +255,15 @@ body {
 .header-contacts a svg {
     color: currentColor;
     fill: currentColor;
+    vertical-align: middle; /* mantém baseline consistente quando inline */
 }
 
 /* Sub-linha para estado ativo no mobile (mantém feedback de página atual) */
 .mobile-panel .nav-link.active {
     position: relative;
 }
+
+/* Alinha a underline exatamente ao centro do conteúdo do link (flex) */
 .mobile-panel .nav-link.active::after {
     content: '';
     position: absolute;
@@ -255,6 +276,7 @@ body {
     background-color: #ffffff;
     display: block !important;   /* reativa apenas para o ativo */
     opacity: 0.95;
+    pointer-events: none;
 }
 
 /* Carrossel de Fotos */
