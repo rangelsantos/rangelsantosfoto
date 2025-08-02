@@ -808,3 +808,27 @@ body {
     right: max(16px, env(safe-area-inset-right));
   }
 }
+/* Centering fixes for mobile carousel to avoid slight right offset */
+@media (max-width: 480px) {
+  .carousel-container {
+    overflow: hidden;
+  }
+  .carousel-track {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    overflow: hidden;
+  }
+  .carousel-track {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
