@@ -98,49 +98,18 @@
     });
     </script>
 
-    <!-- Carrossel de Fotos -->
-    <section class="carousel-section">
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_01.jpg')">
-                    <img src="assets/carousel/carousel_01.jpg" alt="Fotografia 1">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_02.jpg')">
-                    <img src="assets/carousel/carousel_02.jpg" alt="Fotografia 2">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_03.jpg')">
-                    <img src="assets/carousel/carousel_03.jpg" alt="Fotografia 3">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_04.jpg')">
-                    <img src="assets/carousel/carousel_04.jpg" alt="Fotografia 4">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_05.jpg')">
-                    <img src="assets/carousel/carousel_05.jpg" alt="Fotografia 5">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_06.jpg')">
-                    <img src="assets/carousel/carousel_06.jpg" alt="Fotografia 6">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_07.jpg')">
-                    <img src="assets/carousel/carousel_07.jpg" alt="Fotografia 7">
-                </div>
-                <div class="carousel-slide" onclick="openCarouselModal('assets/carousel/carousel_08.jpg')">
-                    <img src="assets/carousel/carousel_08.jpg" alt="Fotografia 8">
-                </div>
-            </div>
-            
-            <!-- Controles de navegação -->
-            <div class="carousel-controls">
-                <div class="carousel-dots">
-                    <span class="dot active" onclick="goToSlide(0)"></span>
-                    <span class="dot" onclick="goToSlide(1)"></span>
-                    <span class="dot" onclick="goToSlide(2)"></span>
-                    <span class="dot" onclick="goToSlide(3)"></span>
-                    <span class="dot" onclick="goToSlide(4)"></span>
-                    <span class="dot" onclick="goToSlide(5)"></span>
-                    <span class="dot" onclick="goToSlide(6)"></span>
-                    <span class="dot" onclick="goToSlide(7)"></span>
-                </div>
-            </div>
+    <!-- Hero Slider estilo Torin Zanette -->
+    <section class="hero-slider" aria-label="Galeria destaque">
+        <div class="hero-slider__viewport" id="heroViewport">
+            <div class="hero-slide is-active" data-index="0" role="img" aria-label="Imagem destaque 1" style="background-image:url('assets/carousel/carousel_01.jpg')"></div>
+            <div class="hero-slide" data-index="1" role="img" aria-label="Imagem destaque 2" style="background-image:url('assets/carousel/carousel_02.jpg')"></div>
+            <div class="hero-slide" data-index="2" role="img" aria-label="Imagem destaque 3" style="background-image:url('assets/carousel/carousel_03.jpg')"></div>
+            <div class="hero-slide" data-index="3" role="img" aria-label="Imagem destaque 4" style="background-image:url('assets/carousel/carousel_04.jpg')"></div>
+            <div class="hero-slide" data-index="4" role="img" aria-label="Imagem destaque 5" style="background-image:url('assets/carousel/carousel_05.jpg')"></div>
+            <div class="hero-slide" data-index="5" role="img" aria-label="Imagem destaque 6" style="background-image:url('assets/carousel/carousel_06.jpg')"></div>
+            <div class="hero-slide" data-index="6" role="img" aria-label="Imagem destaque 7" style="background-image:url('assets/carousel/carousel_07.jpg')"></div>
+            <div class="hero-slide" data-index="7" role="img" aria-label="Imagem destaque 8" style="background-image:url('assets/carousel/carousel_08.jpg')"></div>
+            <div class="hero-slider__overlay"></div>
         </div>
     </section>
 
@@ -195,137 +164,93 @@
     </div>
 
     <script>
-        // Variáveis do carrossel
-        let currentSlide = 0;
-        const totalSlides = 8;
-        let autoSlideInterval;
+    // Hero slider - fade autoplay, swipe, no dots
+    (function () {
+        const viewport = document.getElementById('heroViewport');
+        const slides = Array.from(viewport?.querySelectorAll('.hero-slide') || []);
+        let index = 0;
+        let timer;
+        const DURATION = 5000; // 5s por slide
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Função para abrir modal do carrossel
-        function openCarouselModal(imageSrc) {
-            document.getElementById('carouselModal').style.display = 'flex';
-            document.getElementById('carouselModalImg').src = imageSrc;
+        function setActive(i) {
+            slides.forEach(s => s.classList.remove('is-active'));
+            slides[i]?.classList.add('is-active');
         }
 
-        // Função para fechar modal do carrossel
-        function closeCarouselModal() {
-            document.getElementById('carouselModal').style.display = 'none';
+        function next() {
+            index = (index + 1) % slides.length;
+            setActive(index);
         }
 
-        // Função para ir para um slide específico
-        function goToSlide(slideIndex) {
-            currentSlide = slideIndex;
-            updateCarousel();
-            updateDots();
-            resetAutoSlide();
+        function start() {
+            if (prefersReduced || slides.length <= 1) return;
+            stop();
+            timer = setInterval(next, DURATION);
         }
 
-        // Função para ir ao slide anterior
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-            updateDots();
-            resetAutoSlide();
+        function stop() {
+            if (timer) clearInterval(timer);
         }
 
-        // Função para ir ao próximo slide
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-            updateDots();
-            resetAutoSlide();
-        }
-
-        // Função para atualizar a posição do carrossel
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            let totalOffset = 0;
-            
-            // Calcular offset acumulativo até o slide atual
-            for (let i = 0; i < currentSlide; i++) {
-                const slide = track.children[i];
-                totalOffset += slide.offsetWidth + 20; // largura do slide + gap
+        // Swipe (mobile)
+        let startX = 0, moved = false;
+        viewport.addEventListener('touchstart', (e) => {
+            if (e.touches.length !== 1) return;
+            startX = e.touches[0].clientX;
+            moved = false;
+            stop();
+        }, {passive: true});
+        viewport.addEventListener('touchmove', (e) => {
+            const dx = e.touches[0].clientX - startX;
+            if (Math.abs(dx) > 24) moved = true;
+        }, {passive: true});
+        viewport.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (moved) {
+                if (dx < -24) { // esquerda -> próximo
+                    next();
+                } else if (dx > 24) { // direita -> anterior
+                    index = (index - 1 + slides.length) % slides.length;
+                    setActive(index);
+                }
             }
-            
-            track.style.transform = `translateX(-${totalOffset}px)`;
-        }
-
-        // Função para atualizar os dots
-        function updateDots() {
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        // Função para avançar automaticamente
-        function autoSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-            updateDots();
-        }
-
-        // Função para resetar o auto slide
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(autoSlide, 4000);
-        }
-
-        // Inicializar carrossel
-        document.addEventListener('DOMContentLoaded', function() {
-            resetAutoSlide();
-
-            // Swipe para mobile
-            const track = document.getElementById('carouselTrack');
-            let startX = 0;
-            let isDragging = false;
-            let moved = false;
-
-            track.addEventListener('touchstart', function(e) {
-                if (e.touches.length === 1) {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                    moved = false;
-                }
-            });
-            track.addEventListener('touchmove', function(e) {
-                if (!isDragging) return;
-                const currentX = e.touches[0].clientX;
-                const diffX = currentX - startX;
-                if (Math.abs(diffX) > 30) {
-                    moved = true;
-                }
-            });
-            track.addEventListener('touchend', function(e) {
-                if (!isDragging || !moved) {
-                    isDragging = false;
-                    return;
-                }
-                const endX = e.changedTouches[0].clientX;
-                const diffX = endX - startX;
-                if (diffX > 30) {
-                    // Swipe para direita: slide anterior
-                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                    updateCarousel();
-                    updateDots();
-                    resetAutoSlide();
-                } else if (diffX < -30) {
-                    // Swipe para esquerda: próximo slide
-                    currentSlide = (currentSlide + 1) % totalSlides;
-                    updateCarousel();
-                    updateDots();
-                    resetAutoSlide();
-                }
-                isDragging = false;
-            });
+            start();
         });
 
-        // Fechar modal ao clicar fora da imagem
-        window.onclick = function(event) {
-            const modal = document.getElementById('carouselModal');
-            if (event.target === modal) {
-                closeCarouselModal();
+        // Início
+        setActive(index);
+        start();
+
+        // Header sólida ao rolar
+        const onScroll = () => {
+            if (window.scrollY > 10) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
             }
-        }
+        };
+        window.addEventListener('scroll', onScroll, {passive: true});
+        onScroll();
+
+        // Expor modal utilitário (mantém compatibilidade com markup antigo caso queira usar no futuro)
+        window.openCarouselModal = function(imageSrc) {
+            const modal = document.getElementById('carouselModal');
+            const img = document.getElementById('carouselModalImg');
+            if (!modal || !img) return;
+            modal.style.display = 'flex';
+            img.src = imageSrc;
+        };
+        window.closeCarouselModal = function() {
+            const modal = document.getElementById('carouselModal');
+            if (!modal) return;
+            modal.style.display = 'none';
+        };
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('carouselModal');
+            if (event.target === modal) window.closeCarouselModal();
+        });
+    })();
     </script>
 
     <!-- Rodapé -->
