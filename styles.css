@@ -180,10 +180,31 @@ body {
     border-top: 0; /* remove a barra/linha abaixo do menu */
 }
 
-/* Remove a linha/underline animada dos links dentro do painel mobile */
+/* Remove a linha/underline animada dos links dentro do painel mobile (hover/anim.) */
 .mobile-panel .nav-link::after {
     display: none !important;
     width: 0 !important;
+}
+
+/* Força sublinha visível para o item ativo no mobile, acima de qualquer regra anterior */
+@media (max-width: 768px) {
+    .mobile-panel .nav-link.active {
+        position: relative;
+    }
+    .mobile-panel .nav-link.active::after {
+        display: block !important;   /* reativa apenas no ativo */
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -8px;
+        height: 2px;                 /* mais espessa para garantir visibilidade */
+        width: 56px;                 /* maior para ficar perceptível */
+        max-width: 70%;
+        background-color: #ffffff !important;
+        opacity: 1;
+        pointer-events: none;
+    }
 }
 
 .mobile-nav a {
@@ -215,6 +236,24 @@ body {
 .header-contacts a svg {
     color: currentColor;
     fill: currentColor;
+}
+
+/* Sub-linha para estado ativo no mobile (mantém feedback de página atual) */
+.mobile-panel .nav-link.active {
+    position: relative;
+}
+.mobile-panel .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* centraliza a linha sob o texto */
+    bottom: -6px;
+    width: 44px;                 /* largura fixa parecida com o desktop da imagem de referência */
+    max-width: 60%;
+    height: 1px;
+    background-color: #ffffff;
+    display: block !important;   /* reativa apenas para o ativo */
+    opacity: 0.95;
 }
 
 /* Carrossel de Fotos */
@@ -657,4 +696,79 @@ body {
     .footer {
         padding: 40px 20px;
     }
+}
+
+/* Mobile active underline fix and fallback - appended for highest precedence */
+@media (max-width: 768px) {
+  /* Ensure generic suppression does not hide the active underline */
+  .mobile-panel ul.mobile-nav li a.nav-link.active {
+    position: relative;
+  }
+
+  .mobile-panel ul.mobile-nav li a.nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    height: 2px;
+    width: 56px;
+    background: #fff !important;
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: none;
+  }
+
+  /* Fallback: visible border in case pseudo-element is interfered with by other rules */
+  .mobile-panel ul.mobile-nav li a.nav-link.active {
+    border-bottom: 2px solid #fff;
+    padding-bottom: 6px;
+  }
+}
+
+/* Mobile panel safe width + insets to avoid overflow on real devices with notches, scrollbars, or UI chrome */
+@media (max-width: 768px) {
+  /* Prevent any horizontal overflow on the page while the mobile menu is open */
+  body.nav-open {
+    overflow-x: hidden;
+  }
+
+  /* Ensure the hamburger/X stays fully visible inside the viewport */
+  .hamburger {
+    right: max(16px, env(safe-area-inset-right));
+    left: auto;
+  }
+
+  /* Constrain the mobile panel width with safe padding to avoid clipping on the right side */
+  .mobile-panel {
+    width: calc(100vw - max(32px, env(safe-area-inset-left) + env(safe-area-inset-right)));
+    margin-left: max(16px, env(safe-area-inset-left));
+    margin-right: max(16px, env(safe-area-inset-right));
+    box-sizing: border-box;
+    overflow-x: hidden; /* never allow inner overflow to push panel width */
+  }
+
+  /* Keep inner content centered and within bounds */
+  .mobile-panel .mobile-nav,
+  .mobile-panel .mobile-contacts {
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+}
+
+/* Harmonize left/right header paddings so logo and mobile menu share the same lateral spacing */
+@media (max-width: 768px) {
+  /* Reduce header side padding to bring the logo closer to the edge,
+     matching the hamburger's safe offset for visual harmony */
+  .navbar .nav-container {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+
+  /* Keep hamburger aligned to the same inset for symmetry */
+  .hamburger {
+    right: max(16px, env(safe-area-inset-right));
+  }
 }
