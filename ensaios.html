@@ -151,8 +151,26 @@
                 modal.classList.remove('active');
             }
 
-            function next() { idx = (idx + 1) % items.length; update(); }
-            function prev() { idx = (idx - 1 + items.length) % items.length; update(); }
+            function crossfadeTo(newIndex) {
+                const onFadeOutEnd = () => {
+                    img.removeEventListener('transitionend', onFadeOutEnd);
+                    idx = (newIndex + items.length) % items.length;
+                    update();
+                    // force reflow before fade-in
+                    void img.offsetWidth;
+                    img.classList.remove('fading-out');
+                    img.classList.add('fading-in');
+                    img.addEventListener('transitionend', function onInEnd() {
+                        img.removeEventListener('transitionend', onInEnd);
+                        img.classList.remove('fading-in');
+                    });
+                };
+                img.classList.add('fading-out');
+                img.addEventListener('transitionend', onFadeOutEnd);
+            }
+
+            function next() { crossfadeTo(idx + 1); }
+            function prev() { crossfadeTo(idx - 1); }
 
             // Click: abrir
             items.forEach((item, i) => {

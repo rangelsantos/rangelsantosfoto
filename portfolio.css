@@ -240,8 +240,12 @@
     align-items: center;      /* vertical */
     justify-content: center;  /* horizontal */
     object-fit: contain;
+
+    /* Contexto para animações */
+    overflow: hidden;
 }
 
+/* Transição suave entre imagens do lightbox */
 .modal-content img, #modalImage {
     max-width: 90vw;
     max-height: 90vh;
@@ -250,7 +254,28 @@
     object-fit: contain;
     display: block;
     margin: 0 auto;
+
+    /* Fade + slide */
+    opacity: 1;
+    transition: opacity 260ms ease-in-out, transform 260ms ease-in-out;
+    will-change: opacity, transform;
 }
+
+/* Crossfade */
+#modalImage.fading-out {
+    opacity: 0;
+    transform: translateX(var(--slide-dir, 0)) scale(0.985);
+}
+#modalImage.fading-in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* Estados de slide direcional */
+#modalImage.slide-left-out { transform: translateX(-8%) scale(0.985); opacity: 0; }
+#modalImage.slide-left-in { transform: translateX(6%); opacity: 0.3; }
+#modalImage.slide-right-out { transform: translateX(8%) scale(0.985); opacity: 0; }
+#modalImage.slide-right-in { transform: translateX(-6%); opacity: 0.3; }
 
 @media (max-width: 768px) {
     .modal-content {
@@ -288,21 +313,34 @@
     position: fixed;
     top: 18px;
     right: 24px;
+
+    /* Hit target robusto */
     width: 44px;
     height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+
     z-index: 2100;
     background: rgba(0,0,0,0.25);
     color: #ffffff;
-    font-size: 35px; /* igual ao contador */
+
+    /* Esconde totalmente o &times; textual para evitar "X" duplo */
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-indent: -9999px;
+    overflow: hidden;
+
     font-weight: 300;
     cursor: pointer;
-    line-height: 1;
     transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 
     border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /* Variável para tamanho do ícone */
+    --close-icon: 26px;
 }
 
 .modal-close:hover {
@@ -310,6 +348,20 @@
     background: rgba(255,255,255,0.12);
     border-color: rgba(255,255,255,0.6);
     opacity: 1;
+}
+
+/* Ícone do X em SVG para escalar perfeitamente */
+.modal-close::before {
+    content: "";
+    display: block;
+    width: var(--close-icon);
+    height: var(--close-icon);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* X branco com stroke consistente */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    opacity: 0.92;
 }
 
 /* Lightbox navigation */
@@ -374,13 +426,13 @@
         background: rgba(0,0,0,0.6);
     }
 
-    /* Mantém a proporção e centralização do X no mobile */
+    /* Aumenta o X e mantém boa área de toque no mobile */
     .modal-close {
         top: 12px;
         right: 12px;
-        width: 40px;
-        height: 40px;
-        font-size: 35px;
+        width: 44px;
+        height: 44px;
+        font-size: 32px; /* visível e proporcional em telas pequenas */
         line-height: 1;
     }
 }
