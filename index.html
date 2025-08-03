@@ -110,6 +110,9 @@
             <div class="hero-slide" data-index="6" role="img" aria-label="Imagem destaque 7" style="background-image:url('assets/carousel/carousel_07.jpg')"></div>
             <div class="hero-slide" data-index="7" role="img" aria-label="Imagem destaque 8" style="background-image:url('assets/carousel/carousel_08.jpg')"></div>
             <div class="hero-slider__overlay"></div>
+
+            <!-- Dots de navegação (estilo Torin) -->
+            <div class="hero-dots" id="heroDots" role="tablist" aria-label="Navegação de slides"></div>
         </div>
     </section>
 
@@ -164,22 +167,88 @@
     </div>
 
     <script>
-    // Hero slider - fade autoplay, swipe, no dots
+    // Hero slider - fade autoplay, swipe, com dots estilo Torin
     (function () {
         const viewport = document.getElementById('heroViewport');
         const slides = Array.from(viewport?.querySelectorAll('.hero-slide') || []);
+        const dotsWrap = document.getElementById('heroDots');
         let index = 0;
         let timer;
         const DURATION = 5000; // 5s por slide
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function setActive(i) {
+        // Cria dots
+        if (dotsWrap && slides.length > 1) {
+            dotsWrap.innerHTML = slides.map((_, i) =>
+                `<button class="hero-dot${i===0?' is-active':''}" role="tab" aria-label="Ir para slide ${i+1}" aria-selected="${i===0?'true':'false'}" data-index="${i}" tabindex="${i===0?'0':'-1'}"></button>`
+            ).join('');
+            dotsWrap.addEventListener('click', (e) => {
+                const btn = e.target.closest('.hero-dot');
+                if (!btn) return;
+                const i = Number(btn.dataset.index);
+                if (!Number.isNaN(i)) {
+                    index = i;
+                    setActive(index, true);
+                    restart();
+                }
+            });
+            // Acessibilidade por teclado nos dots
+            dotsWrap.addEventListener('keydown', (e) => {
+                const dots = Array.from(dotsWrap.querySelectorAll('.hero-dot'));
+                const current = dots.indexOf(document.activeElement);
+                if (current < 0) return;
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    dots[Math.min(current + 1, dots.length - 1)].focus();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    dots[Math.max(current - 1, 0)].focus();
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    dots[0].focus();
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    dots[dots.length - 1].focus();
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const i = Number(document.activeElement.dataset.index);
+                    if (!Number.isNaN(i)) {
+                        index = i;
+                        setActive(index, true);
+                        restart();
+                    }
+                }
+            });
+        }
+
+        function updateDots(i) {
+            if (!dotsWrap) return;
+            const dots = dotsWrap.querySelectorAll('.hero-dot');
+            dots.forEach((d, di) => {
+                d.classList.toggle('is-active', di === i);
+                d.setAttribute('aria-selected', di === i ? 'true' : 'false');
+                d.setAttribute('tabindex', di === i ? '0' : '-1');
+            });
+        }
+
+        function setActive(i, fromUser = false) {
             slides.forEach(s => s.classList.remove('is-active'));
             slides[i]?.classList.add('is-active');
+            updateDots(i);
+            // Evita rolagem se foco mudar
+            if (fromUser && dotsWrap) {
+                const activeDot = dotsWrap.querySelector(`.hero-dot[data-index="${i}"]`);
+                activeDot?.focus({preventScroll:true});
+            }
         }
 
         function next() {
             index = (index + 1) % slides.length;
+            setActive(index);
+        }
+
+        function prev() {
+            index = (index - 1 + slides.length) % slides.length;
             setActive(index);
         }
 
@@ -191,6 +260,11 @@
 
         function stop() {
             if (timer) clearInterval(timer);
+        }
+
+        function restart() {
+            stop();
+            start();
         }
 
         // Swipe (mobile)
@@ -211,8 +285,7 @@
                 if (dx < -24) { // esquerda -> próximo
                     next();
                 } else if (dx > 24) { // direita -> anterior
-                    index = (index - 1 + slides.length) % slides.length;
-                    setActive(index);
+                    prev();
                 }
             }
             start();
@@ -233,7 +306,7 @@
         window.addEventListener('scroll', onScroll, {passive: true});
         onScroll();
 
-        // Expor modal utilitário (mantém compatibilidade com markup antigo caso queira usar no futuro)
+        // Expor modal utilitário
         window.openCarouselModal = function(imageSrc) {
             const modal = document.getElementById('carouselModal');
             const img = document.getElementById('carouselModalImg');
