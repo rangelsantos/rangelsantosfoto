@@ -305,6 +305,22 @@ body.scrolled .navbar {
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
+/* Garante fundo SÓLIDO por padrão quando o menu mobile está aberto em todas as páginas */
+body.nav-open .navbar {
+    background-color: #0a0a0a; /* sólido padrão fora da home */
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* Exceção: na HOME (index.html) aplicar efeito vidro (blur + translucidez) */
+body.home-page.nav-open .navbar {
+    background-color: rgba(10,10,10,0.45);      /* um pouco mais transparente para efeito vidro */
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: saturate(140%) blur(10px);  /* efeito de vidro */
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+}
+
 .hero-slider__viewport {
     position: relative;
     width: 100%;
@@ -407,9 +423,9 @@ body.scrolled .navbar {
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* Quando o menu mobile está aberto, aplicar leve fundo para legibilidade (apenas nesse estado) */
-body.nav-open .navbar {
-    background-color: rgba(10,10,10,0.95);
+/* Quando o menu mobile está aberto na HOME, aplicar fundo translúcido (overlay suave) */
+body.home-page.nav-open .navbar {
+    background-color: rgba(10,10,10,0.65); /* translúcido somente na index */
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
