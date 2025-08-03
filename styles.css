@@ -293,10 +293,16 @@ body {
     background: #000;
 }
 
-/* Header permanece transparente sobre o hero; regras consolidadas acima */
+/* Header permanece transparente sobre o hero na HOME apenas */
 .navbar {
     background-color: transparent;
     border-bottom: 0;
+}
+
+/* Em páginas internas (não-home) o header deve ser sólido desde o topo */
+body.inner-page .navbar {
+    background-color: #0a0a0a;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 /* Header sólido somente quando rolar a página */
@@ -417,7 +423,7 @@ body.home-page.nav-open .navbar {
     color: #cccccc;
 }
 
-/* Estado sólido do header apenas ao rolar (desktop e mobile) */
+/* Estado sólido do header ao rolar (desktop e mobile) - aplica-se também à HOME */
 body.scrolled .navbar {
     background-color: #0a0a0a; /* sólido, sem translucidez */
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -597,12 +603,17 @@ body.home-page.nav-open .navbar {
         padding-bottom: 0;
     }
 
-    /* No mobile: transparente por padrão; sólido apenas em scrolled ou nav-open */
+    /* Mobile: na HOME transparente por padrão; nas páginas internas sólido */
     .navbar {
         background-color: transparent;
         border-bottom: 0;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
+    }
+    /* Garante sólido no mobile para páginas internas mesmo no topo */
+    body.inner-page .navbar {
+        background-color: #0a0a0a;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     /* Hero altura referência mobile 384x854 (alto) */
