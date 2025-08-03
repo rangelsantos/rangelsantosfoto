@@ -150,17 +150,6 @@
     }
 }
 
-@media (max-width: 1024px) {
-    .gallery-grid {
-        column-count: 2;
-    }
-}
-
-@media (max-width: 600px) {
-    .gallery-grid {
-        column-count: 1;
-    }
-}
 
 .gallery-item {
     display: block;
@@ -189,41 +178,14 @@
     box-shadow: 0 4px 24px rgba(0,0,0,0.22);
 }
 
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    display: block;
-    break-inside: avoid;
-    width: 100%;
-    box-sizing: border-box;
-}
 
 .gallery-item:hover {
     transform: scale(1.02);
 }
 
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-    display: block;
-}
 
 /* Modal/Lightbox */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-}
+/* Base .modal styles are defined in styles.css to avoid duplication */
 
 .modal.active {
     display: flex;
@@ -231,15 +193,13 @@
     justify-content: center;
 }
 
+/* Enhance modal content on portfolio/lightbox pages without duplicating base sizing */
 .modal-content {
     position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
     margin: 0 auto;
     display: flex;            /* garante centralização do conteúdo interno */
     align-items: center;      /* vertical */
     justify-content: center;  /* horizontal */
-    object-fit: contain;
 
     /* Contexto para animações */
     overflow: hidden;

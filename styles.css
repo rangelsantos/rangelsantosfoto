@@ -423,11 +423,6 @@ body.home-page.nav-open .navbar {
     color: #cccccc;
 }
 
-/* Estado sólido do header ao rolar (desktop e mobile) - aplica-se também à HOME */
-body.scrolled .navbar {
-    background-color: #0a0a0a; /* sólido, sem translucidez */
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
 
 /* Quando o menu mobile está aberto na HOME, aplicar fundo translúcido (overlay suave) */
 body.home-page.nav-open .navbar {
@@ -660,12 +655,6 @@ body.home-page.nav-open .navbar {
         align-items: center;
     }
 
-    /* Zera regras antigas do carrossel em mobile */
-    .carousel-track,
-    .carousel-slide,
-    .carousel-controls,
-    .carousel-dots,
-    .dot { display:none !important; }
     .intro-title {
         font-size: 36px;
     }
@@ -807,15 +796,4 @@ body.home-page.nav-open .navbar {
   .hamburger {
     right: max(16px, env(safe-area-inset-right));
   }
-}
-/* Centering fixes for mobile carousel to avoid slight right offset */
-/* Remove centramentos do antigo carrossel em breakpoints menores */
-@media (max-width: 480px) {
-  .carousel-container,
-  .carousel-track { display:none !important; }
-}
-
-@media (max-width: 768px) {
-  .carousel-container,
-  .carousel-track { display:none !important; }
 }
