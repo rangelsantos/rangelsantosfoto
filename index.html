@@ -297,6 +297,8 @@
 
         // Header sólida ao rolar
         const onScroll = () => {
+            // Apenas páginas internas devem ganhar cabeçalho sólido ao rolar
+            if (!document.body.classList.contains('inner-page')) return;
             if (window.scrollY > 10) {
                 document.body.classList.add('scrolled');
             } else {
