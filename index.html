@@ -10,6 +10,7 @@
     <title>Rangel Santos - Fotógrafo</title>
     <link rel="icon" type="image/png" href="assets/rangel-santos-page-logo.png">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22/dist/face-api.min.js"></script>
 </head>
 <body class="home-page">
     <!-- Menu Superior Fixo -->
@@ -328,7 +329,55 @@
     })();
     </script>
 
-    <!-- Rodapé -->
+    <script>
+// Detect faces in hero slider images and vertically center them (debug v2)
+window.addEventListener('load', () => {
+(async function() {
+    if (!window.faceapi) { console.warn('face-api.js não carregado'); return; } // library failed to load
+    try {
+        console.log('Carregando pesos TinyFaceDetector...');
+        await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+        console.log('Pesos carregados');
+    } catch (e) {
+        console.error('Erro ao carregar pesos do face-api:', e);
+        return;
+    }
+    const slides = document.querySelectorAll('.hero-slide');
+    for (const slide of slides) {
+        // Extrai URL da imagem de fundo
+        const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage);
+        if (!match || !match[1]) continue;
+        const imgUrl = match[1];
+        const img = new Image();
+        img.src = imgUrl;
+        await new Promise(res => {
+            img.onload = res;
+            img.onerror = res;
+        });
+        let detections = [];
+        try {
+            detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
+        } catch (e) {
+            console.error('Detecção falhou para', imgUrl, e);
+        }
+        if (!detections.length) {
+            console.log('Nenhum rosto detectado em', imgUrl);
+            continue;
+        }
+        // Calcula centro vertical médio dos rostos
+        const centers = detections.map(d => d.box.y + d.box.height / 2);
+        const avgY = centers.reduce((a, b) => a + b, 0) / centers.length;
+        const pct = (avgY / img.height) * 100;
+        // Limita valor entre 0 e 100
+        const pctClamped = Math.max(0, Math.min(100, pct));
+        slide.style.backgroundPosition = `center ${pctClamped}%`;
+        console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
+    }
+})();
+});
+</script>
+
+<!-- Rodapé -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
