@@ -10,8 +10,21 @@
     <title>Rangel Santos - Fotógrafo</title>
     <link rel="icon" type="image/png" href="assets/rangel-santos-page-logo.png">
     <link rel="stylesheet" href="styles.css">
+    <!-- Evitar salto visual: posição inicial consistente (fallback) -->
+    <style>
+      /* Garante que todas as imagens do hero iniciem alinhadas com fallback
+         Assim, quando a detecção terminar, apenas alguns slides terão ajuste fino
+         e a maioria não mudará de posição visivelmente */
+      .hero-slide {
+        background-position: center 20% !important;
+      }
+      /* Opcional: suaviza qualquer ajuste residual de posição aplicado via JS */
+      .hero-slide {
+        transition: background-position 300ms ease;
+      }
+    </style>
     <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22/dist/face-api.min.js"></script>
-</head>
+  </head>
 <body class="home-page">
     <!-- Menu Superior Fixo -->
     <nav class="navbar">
@@ -331,14 +344,13 @@
 
     <script>
      // Detect faces in hero slider images and vertically center them (with 20% downward fallback when none is detected)
+     // Evita salto visual: já iniciamos com background-position via CSS (center 20%).
+     // Aqui só refinamos quando há detecção, mantendo a mesma posição para os demais.
      window.addEventListener('load', () => {
      (async function() {
          if (!window.faceapi) {
              console.warn('face-api.js não carregado');
-             // Se a lib não carregar, aplica fallback de 20% para todas as imagens
-             document.querySelectorAll('.hero-slide').forEach(slide => {
-                 slide.style.backgroundPosition = 'center 20%';
-             });
+             // Nada a fazer: CSS já garantiu fallback visual consistente
              return;
          }
          try {
@@ -347,18 +359,14 @@
              console.log('Pesos carregados');
          } catch (e) {
              console.error('Erro ao carregar pesos do face-api:', e);
-             // Em erro ao carregar pesos, aplica fallback de 20%
-             document.querySelectorAll('.hero-slide').forEach(slide => {
-                 slide.style.backgroundPosition = 'center 20%';
-             });
+             // Mantém fallback do CSS
              return;
          }
          const slides = document.querySelectorAll('.hero-slide');
          for (const slide of slides) {
              // Extrai URL da imagem de fundo
-             const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage);
+             const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage || getComputedStyle(slide).backgroundImage);
              if (!match || !match[1]) {
-                 // Se não houver imagem definida, não faz nada
                  continue;
              }
              const imgUrl = match[1];
@@ -375,10 +383,8 @@
                  console.error('Detecção falhou para', imgUrl, e);
              }
              if (!detections.length) {
-                 // Fallback: mover 20% para baixo quando nenhuma pessoa/rosto for detectada
-                 // center 20% => âncora vertical deslocada para baixo para evitar cortar pessoas distantes/laterais
-                 slide.style.backgroundPosition = 'center 20%';
-                 console.log('Nenhum rosto detectado em', imgUrl, '-> aplicando fallback 20%');
+                 // Não altera nada: mantém posição inicial definida via CSS (evita salto)
+                 console.log('Nenhum rosto detectado em', imgUrl, '-> mantendo fallback CSS 20%');
                  continue;
              }
              // Calcula centro vertical médio dos rostos
@@ -387,8 +393,14 @@
              const pct = (avgY / img.height) * 100;
              // Limita valor entre 0 e 100
              const pctClamped = Math.max(0, Math.min(100, pct));
-             slide.style.backgroundPosition = `center ${pctClamped}%`;
-             console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
+             // Só aplica se for significativamente diferente do fallback para evitar micro-ajustes
+             const delta = Math.abs(pctClamped - 20);
+             if (delta > 3) { // threshold de 3% para não causar percepções de flicker
+                 slide.style.backgroundPosition = `center ${pctClamped}%`;
+                 console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
+             } else {
+                 console.log('Detecção próxima ao fallback (', pctClamped, '% ). Mantendo 20% para evitar salto.');
+             }
          }
      })();
      });
