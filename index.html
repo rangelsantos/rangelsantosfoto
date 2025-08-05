@@ -330,52 +330,69 @@
     </script>
 
     <script>
-// Detect faces in hero slider images and vertically center them (debug v2)
-window.addEventListener('load', () => {
-(async function() {
-    if (!window.faceapi) { console.warn('face-api.js não carregado'); return; } // library failed to load
-    try {
-        console.log('Carregando pesos TinyFaceDetector...');
-        await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
-        console.log('Pesos carregados');
-    } catch (e) {
-        console.error('Erro ao carregar pesos do face-api:', e);
-        return;
-    }
-    const slides = document.querySelectorAll('.hero-slide');
-    for (const slide of slides) {
-        // Extrai URL da imagem de fundo
-        const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage);
-        if (!match || !match[1]) continue;
-        const imgUrl = match[1];
-        const img = new Image();
-        img.src = imgUrl;
-        await new Promise(res => {
-            img.onload = res;
-            img.onerror = res;
-        });
-        let detections = [];
-        try {
-            detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-        } catch (e) {
-            console.error('Detecção falhou para', imgUrl, e);
-        }
-        if (!detections.length) {
-            console.log('Nenhum rosto detectado em', imgUrl);
-            continue;
-        }
-        // Calcula centro vertical médio dos rostos
-        const centers = detections.map(d => d.box.y + d.box.height / 2);
-        const avgY = centers.reduce((a, b) => a + b, 0) / centers.length;
-        const pct = (avgY / img.height) * 100;
-        // Limita valor entre 0 e 100
-        const pctClamped = Math.max(0, Math.min(100, pct));
-        slide.style.backgroundPosition = `center ${pctClamped}%`;
-        console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
-    }
-})();
-});
-</script>
+     // Detect faces in hero slider images and vertically center them (with 20% downward fallback when none is detected)
+     window.addEventListener('load', () => {
+     (async function() {
+         if (!window.faceapi) {
+             console.warn('face-api.js não carregado');
+             // Se a lib não carregar, aplica fallback de 20% para todas as imagens
+             document.querySelectorAll('.hero-slide').forEach(slide => {
+                 slide.style.backgroundPosition = 'center 20%';
+             });
+             return;
+         }
+         try {
+             console.log('Carregando pesos TinyFaceDetector...');
+             await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+             console.log('Pesos carregados');
+         } catch (e) {
+             console.error('Erro ao carregar pesos do face-api:', e);
+             // Em erro ao carregar pesos, aplica fallback de 20%
+             document.querySelectorAll('.hero-slide').forEach(slide => {
+                 slide.style.backgroundPosition = 'center 20%';
+             });
+             return;
+         }
+         const slides = document.querySelectorAll('.hero-slide');
+         for (const slide of slides) {
+             // Extrai URL da imagem de fundo
+             const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage);
+             if (!match || !match[1]) {
+                 // Se não houver imagem definida, não faz nada
+                 continue;
+             }
+             const imgUrl = match[1];
+             const img = new Image();
+             img.src = imgUrl;
+             await new Promise(res => {
+                 img.onload = res;
+                 img.onerror = res;
+             });
+             let detections = [];
+             try {
+                 detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
+             } catch (e) {
+                 console.error('Detecção falhou para', imgUrl, e);
+             }
+             if (!detections.length) {
+                 // Fallback: mover 20% para baixo quando nenhuma pessoa/rosto for detectada
+                 // center 20% => âncora vertical deslocada para baixo para evitar cortar pessoas distantes/laterais
+                 slide.style.backgroundPosition = 'center 20%';
+                 console.log('Nenhum rosto detectado em', imgUrl, '-> aplicando fallback 20%');
+                 continue;
+             }
+             // Calcula centro vertical médio dos rostos
+             const centers = detections.map(d => d.box.y + d.box.height / 2);
+             const avgY = centers.reduce((a, b) => a + b, 0) / centers.length;
+             const pct = (avgY / img.height) * 100;
+             // Limita valor entre 0 e 100
+             const pctClamped = Math.max(0, Math.min(100, pct));
+             slide.style.backgroundPosition = `center ${pctClamped}%`;
+             console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
+         }
+     })();
+     });
+     </script>
 
 <!-- Rodapé -->
     <footer class="footer">
