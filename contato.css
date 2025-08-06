@@ -2,7 +2,8 @@
 
 /* Seção de Contato */
 .contact-section {
-    margin-top: 80px;
+    /* Alinha a distância do topo com a seção .portfolio-header */
+    margin-top: 0;
     padding: 100px 40px;
     background-color: #0a0a0a;
     min-height: calc(100vh - 80px);

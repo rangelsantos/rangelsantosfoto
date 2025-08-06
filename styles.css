@@ -649,6 +649,15 @@ body.home-page.nav-open .navbar {
         border-bottom: 0;
     }
 
+    /* Adiciona 30px de respiro abaixo do header em TODAS as páginas internas (exceto index) no mobile */
+    body.inner-page .portfolio-header,
+    body.inner-page .gallery-section,
+    body.inner-page .categories-section,
+    body.inner-page .intro-section,
+    body.inner-page .contact-section {
+        margin-top: 30px;
+    }
+
     /* Barra apenas quando menu mobile aberto */
     body.nav-open .navbar {
         border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -746,6 +755,15 @@ body.home-page.nav-open .navbar {
     .mobile-contacts a {
         width: 32px;
         height: 32px;
+    }
+
+    /* Mantém o mesmo respiro de 30px no mobile pequeno também (páginas internas) */
+    body.inner-page .portfolio-header,
+    body.inner-page .gallery-section,
+    body.inner-page .categories-section,
+    body.inner-page .intro-section,
+    body.inner-page .contact-section {
+        margin-top: 30px;
     }
     
     .intro-section {

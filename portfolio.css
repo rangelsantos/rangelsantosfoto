@@ -2,6 +2,7 @@
 
 /* Cabeçalho do Portfólio */
 .portfolio-header {
+    /* Distância padrão do topo para todas páginas internas */
     margin-top: 0;
     padding: 100px 40px;
     text-align: center;
@@ -95,8 +96,10 @@
 
 /* Galeria de Imagens */
 .gallery-section {
+    /* Padroniza a distância do topo nas páginas internas (igual .portfolio-header/.contact-section) */
     padding: 100px 40px;
     background-color: #0a0a0a;
+    margin-top: 0;
 }
 
 .gallery-container {
@@ -451,12 +454,24 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
+    /* Padroniza com contato: topo/baixo e espaços internos */
     .portfolio-header {
-        padding: 60px 20px;
+        padding: 60px 20px;    /* mesmo que contato.css mobile */
+        margin-top: 0;
     }
-    
+
     .portfolio-header h1 {
         font-size: 36px;
+        margin-bottom: 30px;   /* igual contato: espaço entre título e descrição */
+        letter-spacing: 2px;
+    }
+
+    .portfolio-header p {
+        font-size: 16px;       /* igual contato */
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
     }
     
     .portfolio-categories {
@@ -470,10 +485,26 @@
     
     .gallery-section {
         padding: 60px 20px;
+        margin-top: 0;
+    }
+
+    .gallery-header {
+        text-align: center;
+        margin-bottom: 60px;   /* aproxima do padrão de contato */
     }
     
     .gallery-header h1 {
         font-size: 36px;
+        margin-bottom: 30px;   /* igual contato: espaço entre título e descrição */
+        letter-spacing: 2px;
+    }
+    
+    .gallery-header p {
+        font-size: 16px;       /* igual contato */
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
     }
     
     .gallery-grid {
@@ -508,9 +539,15 @@
 
 @media (max-width: 480px) {
 
+    .portfolio-header {
+        padding: 60px 20px;   /* igual contato no mobile pequeno */
+        margin-top: 0;
+    }
+
     .portfolio-header h1,
     .gallery-header h1 {
         font-size: 28px;
+        margin-bottom: 30px;  /* mantém distância entre título e descrição */
     }
 
     .portfolio-header p,
@@ -519,7 +556,8 @@
     }
 
     .gallery-header {
-        margin-top: 90px;
+        margin-top: 0;        /* remove offset extra para padronizar com contato */
+        margin-bottom: 60px;
     }
 
     .category-overlay h3 {
