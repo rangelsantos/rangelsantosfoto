@@ -11,10 +11,297 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retratos - Rangel Santos</title>
+    <title>Proposta de Casamento - Rangel Santos</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/rangel-santos-page-logo.png">
-    <link rel="stylesheet" href="portfolio.css">
+    <style>
+        /* Estilos específicos para galeria vertical de imagens 21:9 */
+        .proposal-gallery-section {
+            padding: 100px 0;
+            background-color: #0a0a0a;
+            margin-top: 0;
+        }
+
+        .proposal-gallery-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .proposal-gallery-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 0 40px;
+        }
+
+        .proposal-gallery-header h1 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #ffffff;
+            font-family: 'Inter', Arial, Helvetica, sans-serif;
+        }
+
+        .proposal-gallery-header p {
+            font-size: 18px;
+            color: #cccccc;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', Arial, Helvetica, sans-serif;
+            font-weight: 300;
+        }
+
+        .proposal-gallery-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .proposal-gallery-item {
+            width: 80%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            background: #0a0a0a;
+        }
+
+        .proposal-gallery-item:hover {
+            opacity: 0.9;
+        }
+
+        .proposal-gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            /* Aspect ratio 21:9 (2560x1080) = aproximadamente 2.37:1 */
+            aspect-ratio: 21 / 9;
+        }
+
+        /* Modal para visualização de imagens */
+        .proposal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .proposal-modal.active {
+            display: flex;
+        }
+
+        .proposal-modal-content {
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .proposal-modal-content img {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            opacity: 1;
+            transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+            will-change: opacity, transform;
+        }
+
+        .proposal-modal-content img.fading-out {
+            opacity: 0;
+            transform: scale(0.985);
+        }
+
+        .proposal-modal-content img.fading-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .proposal-modal-close {
+            position: fixed;
+            top: 18px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            min-height: 44px;
+            z-index: 2100;
+            background: rgba(0, 0, 0, 0.25);
+            color: #ffffff;
+            font-size: 0 !important;
+            line-height: 0 !important;
+            text-indent: -9999px;
+            overflow: hidden;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            --close-icon: 26px;
+        }
+
+        .proposal-modal-close:hover {
+            color: #eaeaea;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+
+        .proposal-modal-close::before {
+            content: "";
+            display: block;
+            width: var(--close-icon);
+            height: var(--close-icon);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+            opacity: 0.92;
+        }
+
+        .proposal-lightbox-caption {
+            position: fixed;
+            top: 18px;
+            left: 24px;
+            z-index: 2100;
+            font-family: 'Inter', Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            color: #ffffff;
+            letter-spacing: 0.6px;
+        }
+
+        .proposal-lightbox-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+            opacity: 0.85;
+        }
+
+        .proposal-lightbox-arrow:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+
+        .proposal-lightbox-arrow.left {
+            left: 24px;
+            right: auto;
+        }
+
+        .proposal-lightbox-arrow.right {
+            right: 24px;
+            left: auto;
+        }
+
+        .proposal-lightbox-arrow svg {
+            width: 22px;
+            height: 22px;
+            stroke: #ffffff;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .proposal-gallery-section {
+                padding: 60px 0;
+            }
+
+            .proposal-gallery-header {
+                margin-bottom: 60px;
+                padding: 0 20px;
+            }
+
+            .proposal-gallery-header h1 {
+                font-size: 36px;
+                margin-bottom: 30px;
+                letter-spacing: 2px;
+            }
+
+            .proposal-gallery-header p {
+                font-size: 16px;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+                letter-spacing: 0.5px;
+            }
+
+            .proposal-gallery-item {
+                width: 100%;
+            }
+
+            .proposal-lightbox-arrow {
+                display: none !important;
+            }
+
+            .proposal-lightbox-caption {
+                top: 12px;
+                left: 12px;
+                font-size: 14px;
+                padding: 5px 9px;
+                border-radius: 6px;
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .proposal-modal-close {
+                top: 12px;
+                right: 12px;
+                width: 44px;
+                height: 44px;
+            }
+
+            .proposal-modal-content img {
+                max-width: calc(100vw - 32px);
+                max-height: 80vh;
+                margin: 0 auto;
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .proposal-gallery-header h1 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .proposal-gallery-header p {
+                font-size: 16px;
+            }
+
+            .proposal-modal-content img {
+                max-width: calc(100vw - 24px);
+                max-height: 70vh;
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
 
 <body class="inner-page">
@@ -27,8 +314,8 @@
 
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="portfolio.html" class="nav-link active">Portfólio</a></li>
-                <li><a href="proposta-casamento.html" class="nav-link">Proposta</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="proposta-casamento.html" class="nav-link active">Proposta</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
             </ul>
 
@@ -60,8 +347,8 @@
         <div class="mobile-panel" id="mobilePanel">
             <ul class="mobile-nav">
                 <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="portfolio.html" class="nav-link active">Portfólio</a></li>
-                <li><a href="proposta-casamento.html" class="nav-link">Proposta</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="proposta-casamento.html" class="nav-link active">Proposta</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
             </ul>
             <div class="mobile-contacts" aria-label="Contatos">
@@ -113,73 +400,65 @@
         });
     </script>
 
-    <!-- Galeria de Retratos -->
-    <section class="gallery-section">
-        <div class="gallery-container">
-            <div class="gallery-header">
-                <h1>Retratos</h1>
-                <p>Ensaios & Retratos Individuais</p>
+    <!-- Galeria Vertical de Proposta Fotográfica -->
+    <section class="proposal-gallery-section">
+        <div class="proposal-gallery-container">
+            <div class="proposal-gallery-header">
+                <h1>Proposta</h1>
+                <p>Apresento nesta página as opções de casamentos. Para mais informações,<br>por favor entre em contato
+                    comigo para conversarmos sobre seu casamento, muito obrigado!</p>
             </div>
 
-            <div class="gallery-grid">
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_01.jpg">
-                    <img src="assets/portfolio/retratos/retrato_01.jpg" alt="Retrato 1">
+            <div class="proposal-gallery-vertical">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/3.jpg">
+                    <img src="assets/proposta-casamento/3.jpg" alt="Proposta Casamento 1" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_02.jpg">
-                    <img src="assets/portfolio/retratos/retrato_02.jpg" alt="Retrato 2">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/4.jpg">
+                    <img src="assets/proposta-casamento/4.jpg" alt="Proposta Casamento 2" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_03.jpg">
-                    <img src="assets/portfolio/retratos/retrato_03.jpg" alt="Retrato 3">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/5.jpg">
+                    <img src="assets/proposta-casamento/5.jpg" alt="Proposta Casamento 3" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_04.jpg">
-                    <img src="assets/portfolio/retratos/retrato_04.jpg" alt="Retrato 4">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/6.jpg">
+                    <img src="assets/proposta-casamento/6.jpg" alt="Proposta Casamento 4" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_05.jpg">
-                    <img src="assets/portfolio/retratos/retrato_05.jpg" alt="Retrato 5">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/7.jpg">
+                    <img src="assets/proposta-casamento/7.jpg" alt="Proposta Casamento 5" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_06.jpg">
-                    <img src="assets/portfolio/retratos/retrato_06.jpg" alt="Retrato 6">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/8.jpg">
+                    <img src="assets/proposta-casamento/8.jpg" alt="Proposta Casamento 6" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_07.jpg">
-                    <img src="assets/portfolio/retratos/retrato_07.jpg" alt="Retrato 7">
+                <!-- Slots para futuras imagens (comentados) -->
+                <!-- 
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/9.jpg">
+                    <img src="assets/proposta-casamento/9.jpg" alt="Proposta Casamento 7" loading="lazy">
                 </div>
-                <div class="gallery-item" data-full="assets/portfolio/retratos/retrato_08.jpg">
-                    <img src="assets/portfolio/retratos/retrato_08.jpg" alt="Retrato 8">
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/10.jpg">
+                    <img src="assets/proposta-casamento/10.jpg" alt="Proposta Casamento 8" loading="lazy">
                 </div>
-            </div>
-
-            <!-- Navegação para outras categorias -->
-            <div class="category-navigation">
-                <div class="category-nav-item">
-                    <a href="casamento.html">
-                        <img src="assets/portfolio/casamento/casamento_01.jpg" alt="Casamentos">
-                        <h3>Casamentos</h3>
-                        <p>→</p>
-                    </a>
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/11.jpg">
+                    <img src="assets/proposta-casamento/11.jpg" alt="Proposta Casamento 9" loading="lazy">
                 </div>
-                <div class="category-nav-item">
-                    <a href="ensaios.html">
-                        <img src="assets/portfolio/ensaios/ensaio_01.jpg" alt="Ensaios">
-                        <h3>Ensaios</h3>
-                        <p>→</p>
-                    </a>
+                <div class="proposal-gallery-item" data-full="assets/proposta-casamento/12.jpg">
+                    <img src="assets/proposta-casamento/12.jpg" alt="Proposta Casamento 10" loading="lazy">
                 </div>
+                -->
             </div>
         </div>
     </section>
 
     <!-- Modal para visualização de imagens com navegação -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" id="lightboxClose">&times;</span>
-            <div class="lightbox-caption" id="lightboxCounter">1/1</div>
-            <div class="lightbox-arrow left" id="lightboxPrev" aria-label="Anterior">
+    <div id="proposalModal" class="proposal-modal">
+        <div class="proposal-modal-content">
+            <span class="proposal-modal-close" id="proposalLightboxClose">&times;</span>
+            <div class="proposal-lightbox-caption" id="proposalLightboxCounter">1/6</div>
+            <div class="proposal-lightbox-arrow left" id="proposalLightboxPrev" aria-label="Anterior">
                 <svg viewBox="0 0 24 24">
                     <path d="M15 18l-6-6 6-6" />
                 </svg>
             </div>
-            <img id="modalImage" src="" alt="Imagem ampliada">
-            <div class="lightbox-arrow right" id="lightboxNext" aria-label="Próxima">
+            <img id="proposalModalImage" src="" alt="Imagem ampliada">
+            <div class="proposal-lightbox-arrow right" id="proposalLightboxNext" aria-label="Próxima">
                 <svg viewBox="0 0 24 24">
                     <path d="M9 6l6 6-6 6" />
                 </svg>
@@ -213,14 +492,14 @@
 
     <script>
         (function () {
-            const grid = document.querySelector('.gallery-grid');
-            const items = Array.from(grid.querySelectorAll('.gallery-item'));
-            const modal = document.getElementById('imageModal');
-            const img = document.getElementById('modalImage');
-            const closeBtn = document.getElementById('lightboxClose');
-            const prevBtn = document.getElementById('lightboxPrev');
-            const nextBtn = document.getElementById('lightboxNext');
-            const counter = document.getElementById('lightboxCounter');
+            const grid = document.querySelector('.proposal-gallery-vertical');
+            const items = Array.from(grid.querySelectorAll('.proposal-gallery-item'));
+            const modal = document.getElementById('proposalModal');
+            const img = document.getElementById('proposalModalImage');
+            const closeBtn = document.getElementById('proposalLightboxClose');
+            const prevBtn = document.getElementById('proposalLightboxPrev');
+            const nextBtn = document.getElementById('proposalLightboxNext');
+            const counter = document.getElementById('proposalLightboxCounter');
 
             let idx = 0;
 
@@ -246,10 +525,11 @@
                     img.removeEventListener('transitionend', onFadeOutEnd);
                     idx = (newIndex + items.length) % items.length;
                     update();
-                    // force reflow before fade-in
+                    // força reflow para garantir aplicação do próximo estado
                     void img.offsetWidth;
                     img.classList.remove('fading-out');
                     img.classList.add('fading-in');
+                    // limpa classe após terminar
                     img.addEventListener('transitionend', function onInEnd() {
                         img.removeEventListener('transitionend', onInEnd);
                         img.classList.remove('fading-in');
@@ -303,7 +583,7 @@
                 const dx = ev.touches[0].clientX - touchStartX;
                 const dy = ev.touches[0].clientY - touchStartY;
                 if (Math.abs(dx) > Math.abs(dy)) {
-                    ev.preventDefault();
+                    ev.preventDefault(); // evita scroll vertical quando arrastando horizontal
                 }
             }
 
@@ -315,14 +595,15 @@
                 const dy = touch.clientY - touchStartY;
 
                 const horizontal = Math.abs(dx) > Math.abs(dy);
-                const threshold = Math.min(window.innerWidth * 0.12, 80);
+                const threshold = Math.min(window.innerWidth * 0.12, 80); // ~12% da largura ou 80px
 
                 if (horizontal && Math.abs(dx) > threshold) {
-                    if (dx < 0) next();
-                    else prev();
+                    if (dx < 0) next();  // arrastar para esquerda -> próxima
+                    else prev();         // arrastar para direita -> anterior
                 }
             }
 
+            // Aplicar eventos no overlay completo (modal)
             modal.addEventListener('touchstart', onTouchStart, { passive: true });
             modal.addEventListener('touchmove', onTouchMove, { passive: false });
             modal.addEventListener('touchend', onTouchEnd, { passive: true });

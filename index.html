@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <!-- Fonte padronizada: Inter (pesos 300/400/500/700) -->
@@ -12,19 +13,21 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Evitar salto visual: posição inicial consistente (fallback) -->
     <style>
-      /* Garante que todas as imagens do hero iniciem alinhadas com fallback
+        /* Garante que todas as imagens do hero iniciem alinhadas com fallback
          Assim, quando a detecção terminar, apenas alguns slides terão ajuste fino
          e a maioria não mudará de posição visivelmente */
-      .hero-slide {
-        background-position: center 20% !important;
-      }
-      /* Opcional: suaviza qualquer ajuste residual de posição aplicado via JS */
-      .hero-slide {
-        transition: background-position 300ms ease;
-      }
+        .hero-slide {
+            background-position: center 20% !important;
+        }
+
+        /* Opcional: suaviza qualquer ajuste residual de posição aplicado via JS */
+        .hero-slide {
+            transition: background-position 300ms ease;
+        }
     </style>
     <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22/dist/face-api.min.js"></script>
-  </head>
+</head>
+
 <body class="home-page">
     <!-- Menu Superior Fixo -->
     <nav class="navbar">
@@ -32,100 +35,115 @@
             <div class="logo">
                 <img src="assets/rangel-santos-logo.png" alt="Logo Rangel Santos" class="logo-img">
             </div>
-    
+
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="proposta-casamento.html" class="nav-link">Proposta</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
             </ul>
-    
+
             <!-- Contatos no header (desktop) -->
             <div class="header-contacts" aria-label="Contatos">
                 <a href="https://wa.me/5544999334362" target="_blank" title="WhatsApp" aria-label="WhatsApp">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
                     </svg>
                 </a>
-                <a href="https://www.instagram.com/rangelsantosss/" target="_blank" title="Instagram" aria-label="Instagram">
+                <a href="https://www.instagram.com/rangelsantosss/" target="_blank" title="Instagram"
+                    aria-label="Instagram">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                     </svg>
                 </a>
             </div>
-    
+
             <!-- Botão hamburger (mobile) -->
-            <div class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobilePanel" role="button" tabindex="0">
+            <div class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="mobilePanel" role="button" tabindex="0">
                 <span></span><span></span><span></span>
             </div>
         </div>
-    
+
         <!-- Painel mobile -->
         <div class="mobile-panel" id="mobilePanel">
             <ul class="mobile-nav">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                <li><a href="proposta-casamento.html" class="nav-link">Proposta</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
             </ul>
             <div class="mobile-contacts" aria-label="Contatos">
                 <a href="https://wa.me/5544999334362" target="_blank" title="WhatsApp" aria-label="WhatsApp">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
                     </svg>
                 </a>
-                <a href="https://www.instagram.com/rangelsantosss/" target="_blank" title="Instagram" aria-label="Instagram">
+                <a href="https://www.instagram.com/rangelsantosss/" target="_blank" title="Instagram"
+                    aria-label="Instagram">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                     </svg>
                 </a>
             </div>
         </div>
     </nav>
-    
+
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('hamburger');
-        const body = document.body;
-        const mobilePanel = document.getElementById('mobilePanel');
-    
-        function toggleMenu() {
-            const isOpen = body.classList.toggle('nav-open');
-            hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        }
-    
-        hamburger.addEventListener('click', toggleMenu);
-        hamburger.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleMenu();
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const body = document.body;
+            const mobilePanel = document.getElementById('mobilePanel');
+
+            function toggleMenu() {
+                const isOpen = body.classList.toggle('nav-open');
+                hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             }
-        });
-    
-        // Fecha o menu ao clicar em um link mobile
-        mobilePanel?.querySelectorAll('a')?.forEach(a => {
-            a.addEventListener('click', () => {
-                if (document.body.classList.contains('nav-open')) {
-                    document.body.classList.remove('nav-open');
-                    hamburger.setAttribute('aria-expanded', 'false');
+
+            hamburger.addEventListener('click', toggleMenu);
+            hamburger.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleMenu();
                 }
             });
+
+            // Fecha o menu ao clicar em um link mobile
+            mobilePanel?.querySelectorAll('a')?.forEach(a => {
+                a.addEventListener('click', () => {
+                    if (document.body.classList.contains('nav-open')) {
+                        document.body.classList.remove('nav-open');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
         });
-    });
     </script>
 
-    <!-- Hero Slider estilo Torin Zanette -->
     <section class="hero-slider" aria-label="Galeria destaque">
         <div class="hero-slider__viewport" id="heroViewport">
-            <div class="hero-slide is-active" data-index="0" role="img" aria-label="Imagem destaque 1" style="background-image:url('assets/carousel/carousel_01.jpg')"></div>
-            <div class="hero-slide" data-index="1" role="img" aria-label="Imagem destaque 2" style="background-image:url('assets/carousel/carousel_02.jpg')"></div>
-            <div class="hero-slide" data-index="2" role="img" aria-label="Imagem destaque 3" style="background-image:url('assets/carousel/carousel_03.jpg')"></div>
-            <div class="hero-slide" data-index="3" role="img" aria-label="Imagem destaque 4" style="background-image:url('assets/carousel/carousel_04.jpg')"></div>
-            <div class="hero-slide" data-index="4" role="img" aria-label="Imagem destaque 5" style="background-image:url('assets/carousel/carousel_05.jpg')"></div>
-            <div class="hero-slide" data-index="5" role="img" aria-label="Imagem destaque 6" style="background-image:url('assets/carousel/carousel_06.jpg')"></div>
-            <div class="hero-slide" data-index="6" role="img" aria-label="Imagem destaque 7" style="background-image:url('assets/carousel/carousel_07.jpg')"></div>
-            <div class="hero-slide" data-index="7" role="img" aria-label="Imagem destaque 8" style="background-image:url('assets/carousel/carousel_08.jpg')"></div>
+            <div class="hero-slide is-active" data-index="0" role="img" aria-label="Imagem destaque 1"
+                style="background-image:url('assets/carousel/carousel_01.jpg')"></div>
+            <div class="hero-slide" data-index="1" role="img" aria-label="Imagem destaque 2"
+                style="background-image:url('assets/carousel/carousel_02.jpg')"></div>
+            <div class="hero-slide" data-index="2" role="img" aria-label="Imagem destaque 3"
+                style="background-image:url('assets/carousel/carousel_03.jpg')"></div>
+            <div class="hero-slide" data-index="3" role="img" aria-label="Imagem destaque 4"
+                style="background-image:url('assets/carousel/carousel_04.jpg')"></div>
+            <div class="hero-slide" data-index="4" role="img" aria-label="Imagem destaque 5"
+                style="background-image:url('assets/carousel/carousel_05.jpg')"></div>
+            <div class="hero-slide" data-index="5" role="img" aria-label="Imagem destaque 6"
+                style="background-image:url('assets/carousel/carousel_06.jpg')"></div>
+            <div class="hero-slide" data-index="6" role="img" aria-label="Imagem destaque 7"
+                style="background-image:url('assets/carousel/carousel_07.jpg')"></div>
+            <div class="hero-slide" data-index="7" role="img" aria-label="Imagem destaque 8"
+                style="background-image:url('assets/carousel/carousel_08.jpg')"></div>
             <div class="hero-slider__overlay"></div>
 
-            <!-- Dots de navegação (estilo Torin) -->
             <div class="hero-dots" id="heroDots" role="tablist" aria-label="Navegação de slides"></div>
         </div>
     </section>
@@ -133,8 +151,8 @@
     <!-- Seção de Introdução -->
     <section class="intro-section">
         <div class="intro-container">
-            <h2 class="intro-title">Fotografia de Ensaios, Eventos e Estúdio</h2>
-            <p class="intro-subtitle">Feliz em ter você aqui.</p>
+            <h2 class="intro-title">Fotografia de Casamentos e Ensaios</h2>
+            <p class="intro-subtitle">Mais do que fotos, histórias contadas, momentos eternizados.</p>
         </div>
     </section>
 
@@ -181,252 +199,255 @@
     </div>
 
     <script>
-    // Hero slider - fade autoplay, swipe, com dots estilo Torin
-    (function () {
-        const viewport = document.getElementById('heroViewport');
-        const slides = Array.from(viewport?.querySelectorAll('.hero-slide') || []);
-        const dotsWrap = document.getElementById('heroDots');
-        let index = 0;
-        let timer;
-        const DURATION = 5000; // 5s por slide
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Hero slider - fade autoplay, swipe, com dots
+        (function () {
+            const viewport = document.getElementById('heroViewport');
+            const slides = Array.from(viewport?.querySelectorAll('.hero-slide') || []);
+            const dotsWrap = document.getElementById('heroDots');
+            let index = 0;
+            let timer;
+            const DURATION = 5000; // 5s por slide
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Cria dots
-        if (dotsWrap && slides.length > 1) {
-            dotsWrap.innerHTML = slides.map((_, i) =>
-                `<button class="hero-dot${i===0?' is-active':''}" role="tab" aria-label="Ir para slide ${i+1}" aria-selected="${i===0?'true':'false'}" data-index="${i}" tabindex="${i===0?'0':'-1'}"></button>`
-            ).join('');
-            dotsWrap.addEventListener('click', (e) => {
-                const btn = e.target.closest('.hero-dot');
-                if (!btn) return;
-                const i = Number(btn.dataset.index);
-                if (!Number.isNaN(i)) {
-                    index = i;
-                    setActive(index, true);
-                    restart();
-                }
-            });
-            // Acessibilidade por teclado nos dots
-            dotsWrap.addEventListener('keydown', (e) => {
-                const dots = Array.from(dotsWrap.querySelectorAll('.hero-dot'));
-                const current = dots.indexOf(document.activeElement);
-                if (current < 0) return;
-                if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    dots[Math.min(current + 1, dots.length - 1)].focus();
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    dots[Math.max(current - 1, 0)].focus();
-                } else if (e.key === 'Home') {
-                    e.preventDefault();
-                    dots[0].focus();
-                } else if (e.key === 'End') {
-                    e.preventDefault();
-                    dots[dots.length - 1].focus();
-                } else if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const i = Number(document.activeElement.dataset.index);
+            // Cria dots
+            if (dotsWrap && slides.length > 1) {
+                dotsWrap.innerHTML = slides.map((_, i) =>
+                    `<button class="hero-dot${i === 0 ? ' is-active' : ''}" role="tab" aria-label="Ir para slide ${i + 1}" aria-selected="${i === 0 ? 'true' : 'false'}" data-index="${i}" tabindex="${i === 0 ? '0' : '-1'}"></button>`
+                ).join('');
+                dotsWrap.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.hero-dot');
+                    if (!btn) return;
+                    const i = Number(btn.dataset.index);
                     if (!Number.isNaN(i)) {
                         index = i;
                         setActive(index, true);
                         restart();
                     }
-                }
-            });
-        }
-
-        function updateDots(i) {
-            if (!dotsWrap) return;
-            const dots = dotsWrap.querySelectorAll('.hero-dot');
-            dots.forEach((d, di) => {
-                d.classList.toggle('is-active', di === i);
-                d.setAttribute('aria-selected', di === i ? 'true' : 'false');
-                d.setAttribute('tabindex', di === i ? '0' : '-1');
-            });
-        }
-
-        function setActive(i, fromUser = false) {
-            slides.forEach(s => s.classList.remove('is-active'));
-            slides[i]?.classList.add('is-active');
-            updateDots(i);
-            // Evita rolagem se foco mudar
-            if (fromUser && dotsWrap) {
-                const activeDot = dotsWrap.querySelector(`.hero-dot[data-index="${i}"]`);
-                activeDot?.focus({preventScroll:true});
+                });
+                // Acessibilidade por teclado nos dots
+                dotsWrap.addEventListener('keydown', (e) => {
+                    const dots = Array.from(dotsWrap.querySelectorAll('.hero-dot'));
+                    const current = dots.indexOf(document.activeElement);
+                    if (current < 0) return;
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        dots[Math.min(current + 1, dots.length - 1)].focus();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        dots[Math.max(current - 1, 0)].focus();
+                    } else if (e.key === 'Home') {
+                        e.preventDefault();
+                        dots[0].focus();
+                    } else if (e.key === 'End') {
+                        e.preventDefault();
+                        dots[dots.length - 1].focus();
+                    } else if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const i = Number(document.activeElement.dataset.index);
+                        if (!Number.isNaN(i)) {
+                            index = i;
+                            setActive(index, true);
+                            restart();
+                        }
+                    }
+                });
             }
-        }
 
-        function next() {
-            index = (index + 1) % slides.length;
-            setActive(index);
-        }
+            function updateDots(i) {
+                if (!dotsWrap) return;
+                const dots = dotsWrap.querySelectorAll('.hero-dot');
+                dots.forEach((d, di) => {
+                    d.classList.toggle('is-active', di === i);
+                    d.setAttribute('aria-selected', di === i ? 'true' : 'false');
+                    d.setAttribute('tabindex', di === i ? '0' : '-1');
+                });
+            }
 
-        function prev() {
-            index = (index - 1 + slides.length) % slides.length;
-            setActive(index);
-        }
-
-        function start() {
-            if (prefersReduced || slides.length <= 1) return;
-            stop();
-            timer = setInterval(next, DURATION);
-        }
-
-        function stop() {
-            if (timer) clearInterval(timer);
-        }
-
-        function restart() {
-            stop();
-            start();
-        }
-
-        // Swipe (mobile)
-        let startX = 0, moved = false;
-        viewport.addEventListener('touchstart', (e) => {
-            if (e.touches.length !== 1) return;
-            startX = e.touches[0].clientX;
-            moved = false;
-            stop();
-        }, {passive: true});
-        viewport.addEventListener('touchmove', (e) => {
-            const dx = e.touches[0].clientX - startX;
-            if (Math.abs(dx) > 24) moved = true;
-        }, {passive: true});
-        viewport.addEventListener('touchend', (e) => {
-            const dx = e.changedTouches[0].clientX - startX;
-            if (moved) {
-                if (dx < -24) { // esquerda -> próximo
-                    next();
-                } else if (dx > 24) { // direita -> anterior
-                    prev();
+            function setActive(i, fromUser = false) {
+                slides.forEach(s => s.classList.remove('is-active'));
+                slides[i]?.classList.add('is-active');
+                updateDots(i);
+                // Evita rolagem se foco mudar
+                if (fromUser && dotsWrap) {
+                    const activeDot = dotsWrap.querySelector(`.hero-dot[data-index="${i}"]`);
+                    activeDot?.focus({ preventScroll: true });
                 }
             }
-            start();
-        });
 
-        // Início
-        setActive(index);
-        start();
-
-        // Header sólida ao rolar
-        const onScroll = () => {
-            // Apenas páginas internas devem ganhar cabeçalho sólido ao rolar
-            if (!document.body.classList.contains('inner-page')) return;
-            if (window.scrollY > 10) {
-                document.body.classList.add('scrolled');
-            } else {
-                document.body.classList.remove('scrolled');
+            function next() {
+                index = (index + 1) % slides.length;
+                setActive(index);
             }
-        };
-        window.addEventListener('scroll', onScroll, {passive: true});
-        onScroll();
 
-        // Expor modal utilitário
-        window.openCarouselModal = function(imageSrc) {
-            const modal = document.getElementById('carouselModal');
-            const img = document.getElementById('carouselModalImg');
-            if (!modal || !img) return;
-            modal.style.display = 'flex';
-            img.src = imageSrc;
-        };
-        window.closeCarouselModal = function() {
-            const modal = document.getElementById('carouselModal');
-            if (!modal) return;
-            modal.style.display = 'none';
-        };
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('carouselModal');
-            if (event.target === modal) window.closeCarouselModal();
-        });
-    })();
+            function prev() {
+                index = (index - 1 + slides.length) % slides.length;
+                setActive(index);
+            }
+
+            function start() {
+                if (prefersReduced || slides.length <= 1) return;
+                stop();
+                timer = setInterval(next, DURATION);
+            }
+
+            function stop() {
+                if (timer) clearInterval(timer);
+            }
+
+            function restart() {
+                stop();
+                start();
+            }
+
+            // Swipe (mobile)
+            let startX = 0, moved = false;
+            viewport.addEventListener('touchstart', (e) => {
+                if (e.touches.length !== 1) return;
+                startX = e.touches[0].clientX;
+                moved = false;
+                stop();
+            }, { passive: true });
+            viewport.addEventListener('touchmove', (e) => {
+                const dx = e.touches[0].clientX - startX;
+                if (Math.abs(dx) > 24) moved = true;
+            }, { passive: true });
+            viewport.addEventListener('touchend', (e) => {
+                const dx = e.changedTouches[0].clientX - startX;
+                if (moved) {
+                    if (dx < -24) { // esquerda -> próximo
+                        next();
+                    } else if (dx > 24) { // direita -> anterior
+                        prev();
+                    }
+                }
+                start();
+            });
+
+            // Início
+            setActive(index);
+            start();
+
+            // Header sólida ao rolar
+            const onScroll = () => {
+                // Apenas páginas internas devem ganhar cabeçalho sólido ao rolar
+                if (!document.body.classList.contains('inner-page')) return;
+                if (window.scrollY > 10) {
+                    document.body.classList.add('scrolled');
+                } else {
+                    document.body.classList.remove('scrolled');
+                }
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            // Expor modal utilitário
+            window.openCarouselModal = function (imageSrc) {
+                const modal = document.getElementById('carouselModal');
+                const img = document.getElementById('carouselModalImg');
+                if (!modal || !img) return;
+                modal.style.display = 'flex';
+                img.src = imageSrc;
+            };
+            window.closeCarouselModal = function () {
+                const modal = document.getElementById('carouselModal');
+                if (!modal) return;
+                modal.style.display = 'none';
+            };
+            window.addEventListener('click', function (event) {
+                const modal = document.getElementById('carouselModal');
+                if (event.target === modal) window.closeCarouselModal();
+            });
+        })();
     </script>
 
     <script>
-     // Detect faces in hero slider images and vertically center them (with 20% downward fallback when none is detected)
-     // Evita salto visual: já iniciamos com background-position via CSS (center 20%).
-     // Aqui só refinamos quando há detecção, mantendo a mesma posição para os demais.
-     window.addEventListener('load', () => {
-     (async function() {
-         if (!window.faceapi) {
-             console.warn('face-api.js não carregado');
-             // Nada a fazer: CSS já garantiu fallback visual consistente
-             return;
-         }
-         try {
-             console.log('Carregando pesos TinyFaceDetector...');
-             await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
-             console.log('Pesos carregados');
-         } catch (e) {
-             console.error('Erro ao carregar pesos do face-api:', e);
-             // Mantém fallback do CSS
-             return;
-         }
-         const slides = document.querySelectorAll('.hero-slide');
-         for (const slide of slides) {
-             // Extrai URL da imagem de fundo
-             const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage || getComputedStyle(slide).backgroundImage);
-             if (!match || !match[1]) {
-                 continue;
-             }
-             const imgUrl = match[1];
-             const img = new Image();
-             img.src = imgUrl;
-             await new Promise(res => {
-                 img.onload = res;
-                 img.onerror = res;
-             });
-             let detections = [];
-             try {
-                 detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-             } catch (e) {
-                 console.error('Detecção falhou para', imgUrl, e);
-             }
-             if (!detections.length) {
-                 // Não altera nada: mantém posição inicial definida via CSS (evita salto)
-                 console.log('Nenhum rosto detectado em', imgUrl, '-> mantendo fallback CSS 20%');
-                 continue;
-             }
-             // Calcula centro vertical médio dos rostos
-             const centers = detections.map(d => d.box.y + d.box.height / 2);
-             const avgY = centers.reduce((a, b) => a + b, 0) / centers.length;
-             const pct = (avgY / img.height) * 100;
-             // Limita valor entre 0 e 100
-             const pctClamped = Math.max(0, Math.min(100, pct));
-             // Só aplica se for significativamente diferente do fallback para evitar micro-ajustes
-             const delta = Math.abs(pctClamped - 20);
-             if (delta > 3) { // threshold de 3% para não causar percepções de flicker
-                 slide.style.backgroundPosition = `center ${pctClamped}%`;
-                 console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
-             } else {
-                 console.log('Detecção próxima ao fallback (', pctClamped, '% ). Mantendo 20% para evitar salto.');
-             }
-         }
-     })();
-     });
-     </script>
+        // Detect faces in hero slider images and vertically center them (with 20% downward fallback when none is detected)
+        // Evita salto visual: já iniciamos com background-position via CSS (center 20%).
+        // Aqui só refinamos quando há detecção, mantendo a mesma posição para os demais.
+        window.addEventListener('load', () => {
+            (async function () {
+                if (!window.faceapi) {
+                    console.warn('face-api.js não carregado');
+                    // Nada a fazer: CSS já garantiu fallback visual consistente
+                    return;
+                }
+                try {
+                    console.log('Carregando pesos TinyFaceDetector...');
+                    await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+                    console.log('Pesos carregados');
+                } catch (e) {
+                    console.error('Erro ao carregar pesos do face-api:', e);
+                    // Mantém fallback do CSS
+                    return;
+                }
+                const slides = document.querySelectorAll('.hero-slide');
+                for (const slide of slides) {
+                    // Extrai URL da imagem de fundo
+                    const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage || getComputedStyle(slide).backgroundImage);
+                    if (!match || !match[1]) {
+                        continue;
+                    }
+                    const imgUrl = match[1];
+                    const img = new Image();
+                    img.src = imgUrl;
+                    await new Promise(res => {
+                        img.onload = res;
+                        img.onerror = res;
+                    });
+                    let detections = [];
+                    try {
+                        detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
+                    } catch (e) {
+                        console.error('Detecção falhou para', imgUrl, e);
+                    }
+                    if (!detections.length) {
+                        // Não altera nada: mantém posição inicial definida via CSS (evita salto)
+                        console.log('Nenhum rosto detectado em', imgUrl, '-> mantendo fallback CSS 20%');
+                        continue;
+                    }
+                    // Calcula centro vertical médio dos rostos
+                    const centers = detections.map(d => d.box.y + d.box.height / 2);
+                    const avgY = centers.reduce((a, b) => a + b, 0) / centers.length;
+                    const pct = (avgY / img.height) * 100;
+                    // Limita valor entre 0 e 100
+                    const pctClamped = Math.max(0, Math.min(100, pct));
+                    // Só aplica se for significativamente diferente do fallback para evitar micro-ajustes
+                    const delta = Math.abs(pctClamped - 20);
+                    if (delta > 3) { // threshold de 3% para não causar percepções de flicker
+                        slide.style.backgroundPosition = `center ${pctClamped}%`;
+                        console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
+                    } else {
+                        console.log('Detecção próxima ao fallback (', pctClamped, '% ). Mantendo 20% para evitar salto.');
+                    }
+                }
+            })();
+        });
+    </script>
 
-<!-- Rodapé -->
+    <!-- Rodapé -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="social-links">
                     <a href="https://wa.me/5544999334362" target="_blank" title="WhatsApp">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
                         </svg>
                     </a>
                     <a href="https://www.instagram.com/rangelsantosss/" target="_blank" title="Instagram">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
                 </div>
                 <p>Rangel Santos</p>
-                <p>Fotografia de Ensaios, Eventos e Estúdio</p>
+                <p>Fotografia de Casamentos e Ensaios</p>
             </div>
         </div>
     </footer>
 
 </body>
+
 </html>
