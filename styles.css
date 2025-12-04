@@ -8,11 +8,12 @@
 /* Tipografia padrão do site alinhada ao header do portfólio */
 body {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    background-color: #0a0a0a;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #2a2a2a;
     line-height: 1.6;
     overflow-x: hidden;
-    font-weight: 300; /* leve, igual ao .portfolio-header */
+    font-weight: 300;
+    /* leve, igual ao .portfolio-header */
 }
 
 /* Menu Superior Fixo */
@@ -36,23 +37,27 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: auto 1fr auto; /* logo | nav | contacts */
+    grid-template-columns: auto 1fr auto;
+    /* logo | nav | contacts */
     align-items: center;
     gap: 24px;
     padding: 0 40px;
-    background: transparent; /* garante ausência de backdrop na área interna também */
+    background: transparent;
+    /* garante ausência de backdrop na área interna também */
 }
 
 /* Aproxima o bloco central (nav) dos contatos, reduzindo espaço livre à direita do nav */
-.nav-container > .nav-menu {
-    margin-right: 8px; /* pequena aproximação visual dos ícones */
+.nav-container>.nav-menu {
+    margin-right: 8px;
+    /* pequena aproximação visual dos ícones */
 }
 
 .logo h1 {
     font-size: 24px;
-    font-weight: 300; /* manter leve */
+    font-weight: 300;
+    /* manter leve */
     letter-spacing: 2px;
-    color: #ffffff;
+    color: #2a2a2a;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
@@ -61,7 +66,8 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    background: transparent; /* sem backdrop na área do logo */
+    background: transparent;
+    /* sem backdrop na área do logo */
 }
 
 .logo-img {
@@ -76,21 +82,34 @@ body {
     display: flex;
     list-style: none;
     gap: 40px;
-    justify-content: flex-end; /* empurra a navegação para perto dos ícones */
+    justify-content: flex-end;
+    /* empurra a navegação para perto dos ícones */
 }
 
 .nav-link {
-    color: #ffffff;
+    color: #2a2a2a;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 300; /* leve por padrão */
+    font-weight: 300;
+    /* leve por padrão */
     letter-spacing: 1px;
     transition: color 0.3s ease;
     position: relative;
 }
 
+/* Texto branco na home page (sobre o hero slider) */
+body:not(.inner-page) .nav-link {
+    color: #ffffff;
+}
+
 .nav-link:hover,
 .nav-link.active {
+    color: #666666;
+}
+
+/* Hover branco na home page */
+body:not(.inner-page) .nav-link:hover,
+body:not(.inner-page) .nav-link.active {
     color: #cccccc;
 }
 
@@ -101,8 +120,13 @@ body {
     left: 0;
     width: 0;
     height: 1px;
-    background-color: #ffffff;
+    background-color: #2a2a2a;
     transition: width 0.3s ease;
+}
+
+/* Underline branco na home page */
+body:not(.inner-page) .nav-link::after {
+    background-color: #ffffff;
 }
 
 .nav-link:hover::after,
@@ -115,11 +139,13 @@ body {
     display: flex;
     align-items: center;
     gap: 18px;
-    background: transparent; /* sem backdrop nos ícones */
+    background: transparent;
+    /* sem backdrop nos ícones */
 }
 
 .header-contacts a {
-    color: #ffffff !important; /* garante branco também no mobile */
+    color: #2a2a2a !important;
+    /* garante cor escura também no mobile */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -129,15 +155,26 @@ body {
 }
 
 .header-contacts a:hover {
-    color: #cccccc;
+    color: #666666;
     transform: translateY(-2px);
+}
+
+/* Ícones brancos na home page */
+body:not(.inner-page) .header-contacts a {
+    color: #ffffff !important;
+}
+
+body:not(.inner-page) .header-contacts a:hover {
+    color: #cccccc !important;
 }
 
 /* Botão hamburger (mobile) */
 .hamburger {
     display: none;
-    width: 30.6px;   /* 36px * 0.85 (redução de ~15%) */
-    height: 25.5px;  /* 30px * 0.85 */
+    width: 30.6px;
+    /* 36px * 0.85 (redução de ~15%) */
+    height: 25.5px;
+    /* 30px * 0.85 */
     position: relative;
     cursor: pointer;
 }
@@ -147,25 +184,46 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: #ffffff;
+    background: #2a2a2a;
     transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
 }
 
+/* Hamburger branco na home page */
+body:not(.inner-page) .hamburger span {
+    background: #ffffff;
+}
+
 /* Reposiciona as barras proporcionalmente após a redução */
-.hamburger span:nth-child(1) { top: 3.4px; }   /* 4px * 0.85 */
-.hamburger span:nth-child(2) { top: 11.9px; }  /* 14px * 0.85 */
-.hamburger span:nth-child(3) { top: 20.4px; }  /* 24px * 0.85 */
+.hamburger span:nth-child(1) {
+    top: 3.4px;
+}
+
+/* 4px * 0.85 */
+.hamburger span:nth-child(2) {
+    top: 11.9px;
+}
+
+/* 14px * 0.85 */
+.hamburger span:nth-child(3) {
+    top: 20.4px;
+}
+
+/* 24px * 0.85 */
 
 /* Estado ativo (X) */
 .nav-open .hamburger span:nth-child(1) {
-    top: 11.9px; /* 14px * 0.85 */
+    top: 11.9px;
+    /* 14px * 0.85 */
     transform: rotate(45deg);
 }
+
 .nav-open .hamburger span:nth-child(2) {
     opacity: 0;
 }
+
 .nav-open .hamburger span:nth-child(3) {
-    top: 11.9px; /* 14px * 0.85 */
+    top: 11.9px;
+    /* 14px * 0.85 */
     transform: rotate(-45deg);
 }
 
@@ -185,7 +243,8 @@ body {
     list-style: none;
     padding: 18px 0 0;
     margin: 0;
-    border-top: 0; /* remove a barra/linha abaixo do menu */
+    border-top: 0;
+    /* remove a barra/linha abaixo do menu */
 }
 
 /* Remove a linha/underline animada dos links dentro do painel mobile (hover/anim.) */
@@ -199,60 +258,87 @@ body {
     .mobile-panel .nav-link.active {
         position: relative;
     }
+
     .mobile-panel .nav-link.active::after {
-        display: block !important;   /* reativa apenas no ativo */
+        display: block !important;
+        /* reativa apenas no ativo */
         content: '';
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
         bottom: -8px;
-        height: 2px;                 /* mais espessa para garantir visibilidade */
-        width: 56px;                 /* maior para ficar perceptível */
+        height: 2px;
+        /* mais espessa para garantir visibilidade */
+        width: 56px;
+        /* maior para ficar perceptível */
         max-width: 70%;
-        background-color: #ffffff !important;
+        background-color: #2a2a2a !important;
         opacity: 1;
         pointer-events: none;
     }
 }
 
 .mobile-nav a {
-    color: #ffffff;
+    color: #2a2a2a;
     text-decoration: none;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 1px;
     padding: 8px 0;
-    display: inline-flex;     /* usa flex para alinhar baseline de possíveis ícones futuros */
-    align-items: center;      /* garante centralização vertical do conteúdo */
-    justify-content: center;  /* mantém centralizado como antes */
-    gap: 8px;                 /* caso texto+ícone, espaço uniforme */
-    text-align: center;       /* Centraliza itens do menu no painel mobile */
-    line-height: 1.2;         /* altura de linha consistente com sublinhado */
+    display: inline-flex;
+    /* usa flex para alinhar baseline de possíveis ícones futuros */
+    align-items: center;
+    /* garante centralização vertical do conteúdo */
+    justify-content: center;
+    /* mantém centralizado como antes */
+    gap: 8px;
+    /* caso texto+ícone, espaço uniforme */
+    text-align: center;
+    /* Centraliza itens do menu no painel mobile */
+    line-height: 1.2;
+    /* altura de linha consistente com sublinhado */
+}
+
+/* Texto branco no mobile menu da home page */
+body.home-page .mobile-nav a {
+    color: #ffffff;
 }
 
 /* Container dos contatos no painel mobile */
 .mobile-contacts {
     display: flex;
-    justify-content: center; /* Centraliza os ícones no painel mobile */
+    justify-content: center;
+    /* Centraliza os ícones no painel mobile */
     align-items: center;
     gap: 16px;
     padding: 16px 0 4px;
-    border: 0; /* remove qualquer barra/linha */
+    border: 0;
+    /* remove qualquer barra/linha */
 }
 
 /* Garantir alinhamento perfeito dos ícones com o texto (baseline) */
 .mobile-contacts a {
-    color: #ffffff !important; /* corrige cor estranha dos ícones no mobile */
+    color: #2a2a2a !important;
+    /* cor escura para ícones no mobile */
     display: inline-flex;
-    align-items: center;     /* alinha verticalmente o SVG ao centro do link */
+    align-items: center;
+    /* alinha verticalmente o SVG ao centro do link */
     justify-content: center;
-    line-height: 1;          /* evita deslocamento por linha */
-    vertical-align: middle;  /* baseline consistente */
+    line-height: 1;
+    /* evita deslocamento por linha */
+    vertical-align: middle;
+    /* baseline consistente */
+}
+
+/* Ícones brancos no mobile menu da home page */
+body:not(.inner-page) .mobile-contacts a {
+    color: #ffffff !important;
 }
 
 /* Normaliza o box do SVG para centralizar */
 .mobile-contacts a svg {
-    display: block;          /* remove espaço extra inline */
+    display: block;
+    /* remove espaço extra inline */
     width: 22px;
     height: 22px;
 }
@@ -262,7 +348,8 @@ body {
 .header-contacts a svg {
     color: currentColor;
     fill: currentColor;
-    vertical-align: middle; /* mantém baseline consistente quando inline */
+    vertical-align: middle;
+    /* mantém baseline consistente quando inline */
 }
 
 /* Sub-linha para estado ativo no mobile (mantém feedback de página atual) */
@@ -275,13 +362,16 @@ body {
     content: '';
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* centraliza a linha sob o texto */
+    transform: translateX(-50%);
+    /* centraliza a linha sob o texto */
     bottom: -6px;
-    width: 44px;                 /* largura fixa parecida com o desktop da imagem de referência */
+    width: 44px;
+    /* largura fixa parecida com o desktop da imagem de referência */
     max-width: 60%;
     height: 1px;
-    background-color: #ffffff;
-    display: block !important;   /* reativa apenas para o ativo */
+    background-color: #2a2a2a;
+    display: block !important;
+    /* reativa apenas para o ativo */
     opacity: 0.95;
     pointer-events: none;
 }
@@ -289,7 +379,8 @@ body {
 /* Hero Slider estilo Torin Zanette */
 .hero-slider {
     position: relative;
-    margin: 0; /* encosta no topo */
+    margin: 0;
+    /* encosta no topo */
     background: #000;
 }
 
@@ -301,38 +392,47 @@ body {
 
 /* Em páginas internas (não-home) o header deve ser sólido desde o topo */
 body.inner-page .navbar {
-    background-color: #0a0a0a;
-    border-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Header sólido somente quando rolar a página */
 body.scrolled .navbar {
-    background-color: #0a0a0a;
-    border-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Garante fundo SÓLIDO por padrão quando o menu mobile está aberto em todas as páginas */
 body.nav-open .navbar {
-    background-color: #0a0a0a; /* sólido padrão fora da home */
-    border-bottom: 0;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background-color: rgba(255, 255, 255, 0.98);
+    /* sólido padrão fora da home */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-/* Exceção: na HOME (index.html) aplicar efeito vidro (blur + translucidez) */
+/* Exceção: na HOME (index.html) aplicar efeito vidro escuro (blur + translucidez) */
 body.home-page.nav-open .navbar {
-    background-color: rgba(10,10,10,0.45);      /* um pouco mais transparente para efeito vidro */
+    background-color: rgba(10, 10, 10, 0.65);
+    /* fundo escuro translúcido para efeito vidro */
     border-bottom: 0;
-    backdrop-filter: saturate(140%) blur(10px);  /* efeito de vidro */
+    backdrop-filter: saturate(140%) blur(10px);
+    /* efeito de vidro */
     -webkit-backdrop-filter: saturate(140%) blur(10px);
 }
 
 .hero-slider__viewport {
     position: relative;
     width: 100%;
-    height: 100vh;          /* ocupa a viewport */
+    height: 100vh;
+    /* ocupa a viewport */
     min-height: 520px;
-    max-height: 1000px;     /* evita exageros em telas muito grandes */
+    max-height: 1000px;
+    /* evita exageros em telas muito grandes */
     overflow: hidden;
 }
 
@@ -361,19 +461,22 @@ body.home-page.nav-open .navbar {
 .hero-slider__overlay::after {
     content: "";
     position: absolute;
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     pointer-events: none;
     z-index: 2;
 }
+
 .hero-slider__overlay::before {
     top: 0;
     height: 40vh;
-    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 40%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.30) 40%, rgba(0, 0, 0, 0) 100%);
 }
+
 .hero-slider__overlay::after {
     bottom: 0;
     height: 30vh;
-    background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* Dots do hero slider (estilo Torin) */
@@ -386,7 +489,8 @@ body.home-page.nav-open .navbar {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    z-index: 3; /* acima do overlay */
+    z-index: 3;
+    /* acima do overlay */
     pointer-events: auto;
 }
 
@@ -395,23 +499,44 @@ body.home-page.nav-open .navbar {
     height: 10px;
     border-radius: 50%;
     border: 0;
-    background: rgba(255,255,255,0.35);
+    background: rgba(255, 255, 255, 0.35);
     opacity: 0.9;
     cursor: pointer;
     transition: transform 160ms ease, background-color 160ms ease, opacity 160ms ease;
 }
 
-.hero-dot:hover { opacity: 1; transform: scale(1.08); }
-.hero-dot.is-active { background: #ffffff; opacity: 1; }
+.hero-dot:hover {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+.hero-dot.is-active {
+    background: #ffffff;
+    opacity: 1;
+}
 
 @media (max-width: 768px) {
-    .hero-dots { gap: 10px; bottom: clamp(14px, 4vh, 28px); }
-    .hero-dot { width: 9px; height: 9px; }
+    .hero-dots {
+        gap: 10px;
+        bottom: clamp(14px, 4vh, 28px);
+    }
+
+    .hero-dot {
+        width: 9px;
+        height: 9px;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero-dots { gap: 8px; bottom: 14px; }
-    .hero-dot { width: 8px; height: 8px; }
+    .hero-dots {
+        gap: 8px;
+        bottom: 14px;
+    }
+
+    .hero-dot {
+        width: 8px;
+        height: 8px;
+    }
 }
 
 /* Removemos completamente os elementos antigos do carrossel */
@@ -451,20 +576,22 @@ body.home-page.nav-open .navbar {
     top: 20px;
     right: 35px;
     color: #ffffff;
-    font-family: 'Inter', Arial, Helvetica, sans-serif; /* padroniza com Inter */
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    /* padroniza com Inter */
     font-size: 28px;
-    font-weight: 300; /* mantém leve */
+    font-weight: 300;
+    /* mantém leve */
     letter-spacing: 2px;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
-    color: #cccccc;
 }
 
 
-/* Quando o menu mobile está aberto na HOME, aplicar fundo translúcido (overlay suave) */
+/* Quando o menu mobile está aberto na HOME, aplicar fundo translúcido escuro (overlay suave) */
 body.home-page.nav-open .navbar {
-    background-color: rgba(10,10,10,0.65); /* translúcido somente na index */
+    background-color: rgba(10, 10, 10, 0.65);
+    /* translúcido escuro somente na index */
     border-bottom: 0;
 }
 
@@ -472,7 +599,7 @@ body.home-page.nav-open .navbar {
 .intro-section {
     padding: 100px 40px;
     text-align: center;
-    background-color: #111111;
+    background-color: #fafafa;
 }
 
 .intro-container {
@@ -483,7 +610,7 @@ body.home-page.nav-open .navbar {
 .intro-quote {
     font-size: 18px;
     font-style: italic;
-    color: #cccccc;
+    color: #666666;
     margin-bottom: 40px;
     letter-spacing: 1px;
 }
@@ -498,7 +625,7 @@ body.home-page.nav-open .navbar {
 
 .intro-subtitle {
     font-size: 20px;
-    color: #cccccc;
+    color: #666666;
     font-weight: 300;
     letter-spacing: 1px;
 }
@@ -506,7 +633,7 @@ body.home-page.nav-open .navbar {
 /* Seção de Categorias */
 .categories-section {
     padding: 100px 40px;
-    background-color: #0a0a0a;
+    background-color: #ffffff;
 }
 
 .categories-container {
@@ -567,7 +694,7 @@ body.home-page.nav-open .navbar {
 
 .category-info p {
     font-size: 16px;
-    color: #cccccc;
+    color: #f0f0f0;
     margin-bottom: 15px;
     letter-spacing: 0.5px;
 }
@@ -584,10 +711,10 @@ body.home-page.nav-open .navbar {
 
 /* Rodapé */
 .footer {
-    background-color: #111111;
+    background-color: #f5f5f5;
     padding: 60px 40px;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .footer-container {
@@ -609,26 +736,28 @@ body.home-page.nav-open .navbar {
 }
 
 .social-links a {
-    color: #ffffff;
+    color: #2a2a2a;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #cccccc;
+    color: #666666;
     transform: translateY(-3px);
 }
 
 .footer p {
     font-size: 16px;
-    color: #cccccc;
+    color: #666666;
     letter-spacing: 0.5px;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
+
     /* Header grid and consistent lateral inset */
     .nav-container {
-        grid-template-columns: auto auto; /* logo | hamburger */
+        grid-template-columns: auto auto;
+        /* logo | hamburger */
         align-items: center;
         padding-left: max(16px, env(safe-area-inset-left));
         padding-right: max(16px, env(safe-area-inset-right));
@@ -643,10 +772,13 @@ body.home-page.nav-open .navbar {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
+
     /* Garante sólido no mobile para páginas internas mesmo no topo */
     body.inner-page .navbar {
-        background-color: #0a0a0a;
-        border-bottom: 0;
+        background-color: rgba(255, 255, 255, 0.98);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     /* Adiciona 30px de respiro abaixo do header em TODAS as páginas internas (exceto index) no mobile */
@@ -660,13 +792,19 @@ body.home-page.nav-open .navbar {
 
     /* Barra apenas quando menu mobile aberto */
     body.nav-open .navbar {
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Borda clara quando menu mobile aberto na home */
+    body.home-page.nav-open .navbar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Hero altura referência mobile 384x854 (alto) */
     .hero-slider__viewport {
         height: 85vh;
-        min-height: 540px; /* próximo ao 854 de altura útil em proporção */
+        min-height: 540px;
+        /* próximo ao 854 de altura útil em proporção */
         max-height: 90vh;
     }
 
@@ -674,8 +812,10 @@ body.home-page.nav-open .navbar {
     .logo {
         justify-content: flex-start;
     }
+
     .logo-img {
-        height: 44px; /* smaller on mobile for harmony */
+        height: 44px;
+        /* smaller on mobile for harmony */
         margin-right: 8px;
     }
 
@@ -710,16 +850,19 @@ body.home-page.nav-open .navbar {
     .intro-title {
         font-size: 36px;
     }
+
     .categories-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
+
     .category-info h3 {
         font-size: 28px;
     }
 }
 
 @media (max-width: 480px) {
+
     /* Ajuste fino para celulares menores */
     .hero-slider__viewport {
         height: 78vh;
@@ -729,11 +872,12 @@ body.home-page.nav-open .navbar {
 }
 
 @media (max-width: 480px) {
+
     /* slightly tighter vertical padding to balance reduced logo size */
     .navbar {
         padding: 12px 0;
     }
-    
+
     .logo h1 {
         font-size: 20px;
     }
@@ -742,9 +886,10 @@ body.home-page.nav-open .navbar {
     .logo-img {
         height: 40px;
     }
-    
+
     .nav-link {
-        font-size: 16px; /* touch-friendly */
+        font-size: 16px;
+        /* touch-friendly */
     }
 
     .mobile-nav a {
@@ -765,27 +910,27 @@ body.home-page.nav-open .navbar {
     body.inner-page .contact-section {
         margin-top: 30px;
     }
-    
+
     .intro-section {
         padding: 60px 20px;
     }
-    
+
     .intro-title {
         font-size: 28px;
     }
-    
+
     .categories-section {
         padding: 60px 20px;
     }
-    
+
     .category-info {
         padding: 40px 20px 20px;
     }
-    
+
     .category-info h3 {
         font-size: 24px;
     }
-    
+
     .footer {
         padding: 40px 20px;
     }
@@ -793,68 +938,72 @@ body.home-page.nav-open .navbar {
 
 /* Mobile active underline fix and fallback - appended for highest precedence */
 @media (max-width: 768px) {
-  /* Ensure generic suppression does not hide the active underline */
-  .mobile-panel ul.mobile-nav li a.nav-link.active {
-    position: relative;
-  }
 
-  .mobile-panel ul.mobile-nav li a.nav-link.active::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -8px;
-    height: 2px;
-    width: 56px;
-    background: #fff !important;
-    display: block !important;
-    opacity: 1 !important;
-    pointer-events: none;
-  }
+    /* Ensure generic suppression does not hide the active underline */
+    .mobile-panel ul.mobile-nav li a.nav-link.active {
+        position: relative;
+    }
 
-  /* Fallback: visible border in case pseudo-element is interfered with by other rules */
-  .mobile-panel ul.mobile-nav li a.nav-link.active {
-    border-bottom: 2px solid #fff;
-    padding-bottom: 6px;
-  }
+    .mobile-panel ul.mobile-nav li a.nav-link.active::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -8px;
+        height: 2px;
+        width: 56px;
+        background: #2a2a2a !important;
+        display: block !important;
+        opacity: 1 !important;
+        pointer-events: none;
+    }
+
+    /* Fallback: visible border in case pseudo-element is interfered with by other rules */
+    .mobile-panel ul.mobile-nav li a.nav-link.active {
+        border-bottom: 2px solid #2a2a2a;
+        padding-bottom: 6px;
+    }
 }
 
 /* Mobile panel safe width + insets to avoid overflow on real devices with notches, scrollbars, or UI chrome */
 @media (max-width: 768px) {
-  /* Prevent any horizontal overflow on the page while the mobile menu is open */
-  body.nav-open {
-    overflow-x: hidden;
-  }
 
-  /* Ensure the hamburger/X stays fully visible inside the viewport */
-  .hamburger {
-    right: max(16px, env(safe-area-inset-right));
-    left: auto;
-  }
+    /* Prevent any horizontal overflow on the page while the mobile menu is open */
+    body.nav-open {
+        overflow-x: hidden;
+    }
 
-  /* Constrain the mobile panel width with safe padding to avoid clipping on the right side */
-  .mobile-panel {
-    width: calc(100vw - max(32px, env(safe-area-inset-left) + env(safe-area-inset-right)));
-    margin-left: max(16px, env(safe-area-inset-left));
-    margin-right: max(16px, env(safe-area-inset-right));
-    box-sizing: border-box;
-    overflow-x: hidden; /* never allow inner overflow to push panel width */
-  }
+    /* Ensure the hamburger/X stays fully visible inside the viewport */
+    .hamburger {
+        right: max(16px, env(safe-area-inset-right));
+        left: auto;
+    }
 
-  /* Keep inner content centered and within bounds */
-  .mobile-panel .mobile-nav,
-  .mobile-panel .mobile-contacts {
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-    max-width: 100%;
-  }
+    /* Constrain the mobile panel width with safe padding to avoid clipping on the right side */
+    .mobile-panel {
+        width: calc(100vw - max(32px, env(safe-area-inset-left) + env(safe-area-inset-right)));
+        margin-left: max(16px, env(safe-area-inset-left));
+        margin-right: max(16px, env(safe-area-inset-right));
+        box-sizing: border-box;
+        overflow-x: hidden;
+        /* never allow inner overflow to push panel width */
+    }
+
+    /* Keep inner content centered and within bounds */
+    .mobile-panel .mobile-nav,
+    .mobile-panel .mobile-contacts {
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
 }
 
 /* Harmonize left/right header paddings so logo and mobile menu share the same lateral spacing */
 @media (max-width: 768px) {
-  /* already set via the main mobile block above; keep hamburger safe inset explicit */
-  .hamburger {
-    right: max(16px, env(safe-area-inset-right));
-  }
+
+    /* already set via the main mobile block above; keep hamburger safe inset explicit */
+    .hamburger {
+        right: max(16px, env(safe-area-inset-right));
+    }
 }

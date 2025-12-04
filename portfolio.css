@@ -6,7 +6,7 @@
     margin-top: 0;
     padding: 100px 40px;
     text-align: center;
-    background-color: #0a0a0a;
+    background-color: #ffffff;
 }
 
 .portfolio-header-container {
@@ -16,26 +16,28 @@
 
 .portfolio-header h1 {
     font-size: 48px;
-    font-weight: 300; /* leve como padrão do site */
+    font-weight: 300;
+    /* leve como padrão do site */
     margin-bottom: 30px;
     letter-spacing: 2px;
-    color: #ffffff;
+    color: #2a2a2a;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .portfolio-header p {
     font-size: 18px;
-    color: #cccccc;
+    color: #666666;
     line-height: 1.6;
     letter-spacing: 0.5px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-weight: 300; /* manter leve */
+    font-weight: 300;
+    /* manter leve */
 }
 
 /* Categorias do Portfólio */
 .portfolio-categories {
     padding: 100px 40px;
-    background-color: #0a0a0a;
+    background-color: #ffffff;
 }
 
 .portfolio-container {
@@ -89,7 +91,8 @@
 
 .category-overlay h3 {
     font-size: 32px;
-    font-weight: 300; /* manter leve */
+    font-weight: 300;
+    /* manter leve */
     letter-spacing: 1px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
@@ -98,7 +101,7 @@
 .gallery-section {
     /* Padroniza a distância do topo nas páginas internas (igual .portfolio-header/.contact-section) */
     padding: 100px 40px;
-    background-color: #0a0a0a;
+    background-color: #ffffff;
     margin-top: 0;
 }
 
@@ -117,16 +120,17 @@
 
 .gallery-header h1 {
     font-size: 48px;
-    font-weight: 300; /* leve */
+    font-weight: 300;
+    /* leve */
     margin-bottom: 20px;
     letter-spacing: 2px;
-    color: #ffffff;
+    color: #2a2a2a;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .gallery-header p {
     font-size: 18px;
-    color: #cccccc;
+    color: #666666;
     letter-spacing: 0.5px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-weight: 300;
@@ -164,7 +168,7 @@
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
-    background: #181818;
+    background: #f9f9f9;
 }
 
 .gallery-item img {
@@ -173,12 +177,12 @@
     display: block;
     object-fit: contain;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
 }
 
 .gallery-item:hover img {
     transform: scale(1.03);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
 }
 
 
@@ -200,16 +204,20 @@
 .modal-content {
     position: relative;
     margin: 0 auto;
-    display: flex;            /* garante centralização do conteúdo interno */
-    align-items: center;      /* vertical */
-    justify-content: center;  /* horizontal */
+    display: flex;
+    /* garante centralização do conteúdo interno */
+    align-items: center;
+    /* vertical */
+    justify-content: center;
+    /* horizontal */
 
     /* Contexto para animações */
     overflow: hidden;
 }
 
 /* Transição suave entre imagens do lightbox */
-.modal-content img, #modalImage {
+.modal-content img,
+#modalImage {
     max-width: 90vw;
     max-height: 90vh;
     width: auto;
@@ -229,29 +237,51 @@
     opacity: 0;
     transform: translateX(var(--slide-dir, 0)) scale(0.985);
 }
+
 #modalImage.fading-in {
     opacity: 1;
     transform: translateX(0) scale(1);
 }
 
 /* Estados de slide direcional */
-#modalImage.slide-left-out { transform: translateX(-8%) scale(0.985); opacity: 0; }
-#modalImage.slide-left-in { transform: translateX(6%); opacity: 0.3; }
-#modalImage.slide-right-out { transform: translateX(8%) scale(0.985); opacity: 0; }
-#modalImage.slide-right-in { transform: translateX(-6%); opacity: 0.3; }
+#modalImage.slide-left-out {
+    transform: translateX(-8%) scale(0.985);
+    opacity: 0;
+}
+
+#modalImage.slide-left-in {
+    transform: translateX(6%);
+    opacity: 0.3;
+}
+
+#modalImage.slide-right-out {
+    transform: translateX(8%) scale(0.985);
+    opacity: 0;
+}
+
+#modalImage.slide-right-in {
+    transform: translateX(-6%);
+    opacity: 0.3;
+}
 
 @media (max-width: 768px) {
     .modal-content {
-        margin: 0 auto;              /* força centralização no mobile */
-        padding: 0 8px;              /* pequena folga para setas não empurrarem imagem */
+        margin: 0 auto;
+        /* força centralização no mobile */
+        padding: 0 8px;
+        /* pequena folga para setas não empurrarem imagem */
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .modal-content img, #modalImage {
-        max-width: calc(100vw - 32px); /* considera espaço para setas laterais */
+
+    .modal-content img,
+    #modalImage {
+        max-width: calc(100vw - 32px);
+        /* considera espaço para setas laterais */
         max-height: 80vh;
-        margin: 0 auto;               /* central horizontal */
+        margin: 0 auto;
+        /* central horizontal */
         display: block;
     }
 }
@@ -264,7 +294,9 @@
         align-items: center;
         justify-content: center;
     }
-    .modal-content img, #modalImage {
+
+    .modal-content img,
+    #modalImage {
         max-width: calc(100vw - 24px);
         max-height: 70vh;
         margin: 0 auto;
@@ -284,7 +316,7 @@
     min-height: 44px;
 
     z-index: 2100;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0, 0, 0, 0.25);
     color: #ffffff;
 
     /* Esconde totalmente o &times; textual para evitar "X" duplo */
@@ -308,8 +340,8 @@
 
 .modal-close:hover {
     color: #eaeaea;
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
     opacity: 1;
 }
 
@@ -358,13 +390,20 @@
 }
 
 .lightbox-arrow:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
     opacity: 1;
 }
 
-.lightbox-arrow.left { left: 24px; right: auto; }
-.lightbox-arrow.right { right: 24px; left: auto; }
+.lightbox-arrow.left {
+    left: 24px;
+    right: auto;
+}
+
+.lightbox-arrow.right {
+    right: 24px;
+    left: auto;
+}
 
 .lightbox-arrow svg {
     width: 22px;
@@ -375,6 +414,7 @@
 }
 
 @media (max-width: 768px) {
+
     /* Esconde as setas no mobile; navegação por gesto */
     .lightbox-arrow {
         display: none !important;
@@ -386,7 +426,7 @@
         font-size: 14px;
         padding: 5px 9px;
         border-radius: 6px;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.6);
     }
 
     /* Aumenta o X e mantém boa área de toque no mobile */
@@ -395,7 +435,8 @@
         right: 12px;
         width: 44px;
         height: 44px;
-        font-size: 32px; /* visível e proporcional em telas pequenas */
+        font-size: 32px;
+        /* visível e proporcional em telas pequenas */
         line-height: 1;
     }
 }
@@ -437,15 +478,16 @@
 
 .category-nav-item h3 {
     font-size: 24px;
-    font-weight: 300; /* leve */
-    color: #ffffff;
+    font-weight: 300;
+    /* leve */
+    color: #2a2a2a;
     letter-spacing: 1px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .category-nav-item p {
     font-size: 16px;
-    color: #cccccc;
+    color: #666666;
     margin-top: 10px;
     letter-spacing: 0.5px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -454,35 +496,39 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
+
     /* Padroniza com contato: topo/baixo e espaços internos */
     .portfolio-header {
-        padding: 60px 20px;    /* mesmo que contato.css mobile */
+        padding: 60px 20px;
+        /* mesmo que contato.css mobile */
         margin-top: 0;
     }
 
     .portfolio-header h1 {
         font-size: 36px;
-        margin-bottom: 30px;   /* igual contato: espaço entre título e descrição */
+        margin-bottom: 30px;
+        /* igual contato: espaço entre título e descrição */
         letter-spacing: 2px;
     }
 
     .portfolio-header p {
-        font-size: 16px;       /* igual contato */
+        font-size: 16px;
+        /* igual contato */
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
         letter-spacing: 0.5px;
     }
-    
+
     .portfolio-categories {
         padding: 60px 20px;
     }
-    
+
     .portfolio-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .gallery-section {
         padding: 60px 20px;
         margin-top: 0;
@@ -490,42 +536,45 @@
 
     .gallery-header {
         text-align: center;
-        margin-bottom: 60px;   /* aproxima do padrão de contato */
+        margin-bottom: 60px;
+        /* aproxima do padrão de contato */
     }
-    
+
     .gallery-header h1 {
         font-size: 36px;
-        margin-bottom: 30px;   /* igual contato: espaço entre título e descrição */
+        margin-bottom: 30px;
+        /* igual contato: espaço entre título e descrição */
         letter-spacing: 2px;
     }
-    
+
     .gallery-header p {
-        font-size: 16px;       /* igual contato */
+        font-size: 16px;
+        /* igual contato */
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
         letter-spacing: 0.5px;
     }
-    
+
     .gallery-grid {
         gap: 15px;
     }
-    
+
     .gallery-item {
         max-width: calc(50% - 8px);
         min-width: 200px;
     }
-    
+
     .category-navigation {
         flex-direction: column;
         gap: 30px;
     }
-    
+
     .category-nav-item img {
         width: 150px;
         height: 200px;
     }
-    
+
     .modal-close {
         top: 12px;
         right: 12px;
@@ -533,21 +582,24 @@
         /* mantém proporção e centralização no mobile */
         width: 40px;
         height: 40px;
-        font-size: 18px; /* levemente menor que desktop, porém proporcional */
+        font-size: 18px;
+        /* levemente menor que desktop, porém proporcional */
     }
 }
 
 @media (max-width: 480px) {
 
     .portfolio-header {
-        padding: 60px 20px;   /* igual contato no mobile pequeno */
+        padding: 60px 20px;
+        /* igual contato no mobile pequeno */
         margin-top: 0;
     }
 
     .portfolio-header h1,
     .gallery-header h1 {
         font-size: 28px;
-        margin-bottom: 30px;  /* mantém distância entre título e descrição */
+        margin-bottom: 30px;
+        /* mantém distância entre título e descrição */
     }
 
     .portfolio-header p,
@@ -556,7 +608,8 @@
     }
 
     .gallery-header {
-        margin-top: 0;        /* remove offset extra para padronizar com contato */
+        margin-top: 0;
+        /* remove offset extra para padronizar com contato */
         margin-bottom: 60px;
     }
 
@@ -577,4 +630,3 @@
         font-size: 20px;
     }
 }
-

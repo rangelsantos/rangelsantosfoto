@@ -1,0 +1,287 @@
+/* Estilos específicos para galeria vertical de imagens 21:9 - Proposta de Casamento */
+
+.proposal-gallery-section {
+    padding: 100px 0;
+    background-color: #ffffff;
+    margin-top: 0;
+}
+
+.proposal-gallery-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.proposal-gallery-header {
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 0 40px;
+}
+
+.proposal-gallery-header h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: #2a2a2a;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.proposal-gallery-header p {
+    font-size: 18px;
+    color: #666666;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+}
+
+.proposal-gallery-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.proposal-gallery-item {
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    background: #f9f9f9;
+}
+
+.proposal-gallery-item:hover {
+    opacity: 0.9;
+}
+
+.proposal-gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    /* Aspect ratio 21:9 (2560x1080) = aproximadamente 2.37:1 */
+    aspect-ratio: 21 / 9;
+}
+
+/* Modal para visualização de imagens */
+.proposal-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.proposal-modal.active {
+    display: flex;
+}
+
+.proposal-modal-content {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.proposal-modal-content img {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    opacity: 1;
+    transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+    will-change: opacity, transform;
+}
+
+.proposal-modal-content img.fading-out {
+    opacity: 0;
+    transform: scale(0.985);
+}
+
+.proposal-modal-content img.fading-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.proposal-modal-close {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    z-index: 2100;
+    background: rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-indent: -9999px;
+    overflow: hidden;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --close-icon: 26px;
+}
+
+.proposal-modal-close:hover {
+    color: #eaeaea;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+}
+
+.proposal-modal-close::before {
+    content: "";
+    display: block;
+    width: var(--close-icon);
+    height: var(--close-icon);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    opacity: 0.92;
+}
+
+.proposal-lightbox-caption {
+    position: fixed;
+    top: 18px;
+    left: 24px;
+    z-index: 2100;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    letter-spacing: 0.6px;
+}
+
+.proposal-lightbox-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.85;
+}
+
+.proposal-lightbox-arrow:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+}
+
+.proposal-lightbox-arrow.left {
+    left: 24px;
+    right: auto;
+}
+
+.proposal-lightbox-arrow.right {
+    right: 24px;
+    left: auto;
+}
+
+.proposal-lightbox-arrow svg {
+    width: 22px;
+    height: 22px;
+    stroke: #ffffff;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .proposal-gallery-section {
+        padding: 60px 0;
+    }
+
+    .proposal-gallery-header {
+        margin-bottom: 60px;
+        padding: 0 20px;
+    }
+
+    .proposal-gallery-header h1 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+    }
+
+    .proposal-gallery-header p {
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
+    }
+
+    .proposal-gallery-item {
+        width: 100%;
+    }
+
+    .proposal-lightbox-arrow {
+        display: none !important;
+    }
+
+    .proposal-lightbox-caption {
+        top: 12px;
+        left: 12px;
+        font-size: 14px;
+        padding: 5px 9px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .proposal-modal-close {
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .proposal-modal-content img {
+        max-width: calc(100vw - 32px);
+        max-height: 80vh;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .proposal-gallery-header h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .proposal-gallery-header p {
+        font-size: 16px;
+    }
+
+    .proposal-modal-content img {
+        max-width: calc(100vw - 24px);
+        max-height: 70vh;
+        margin: 0 auto;
+    }
+}
