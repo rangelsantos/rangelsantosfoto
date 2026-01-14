@@ -1,0 +1,8 @@
+# Robots.txt for rangelsantos.com.br
+# Wedding Photography by Rangel Santos
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://rangelsantos.com.br/sitemap.xml
