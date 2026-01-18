@@ -215,8 +215,8 @@
 .post-content img {
     width: 100%;
     height: auto;
-    margin: 36px 0;
-    border-radius: 4px;
+    margin: 0px 0;
+    border-radius: 0px;
 }
 
 .post-content blockquote {
