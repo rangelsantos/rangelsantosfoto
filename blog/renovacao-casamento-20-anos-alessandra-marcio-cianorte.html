@@ -39,6 +39,7 @@
     <link rel="icon" type="image/png" href="../assets/rangel-santos-page-logo.png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../blog.css">
+    <link rel="stylesheet" href="../portfolio.css">
 </head>
 
 <body class="inner-page">
@@ -249,6 +250,25 @@
         </div>
     </section>
 
+    <!-- Modal para visualização de imagens com navegação -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="lightboxClose">&times;</span>
+            <div class="lightbox-caption" id="lightboxCounter">1/1</div>
+            <div class="lightbox-arrow left" id="lightboxPrev" aria-label="Anterior">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+            </div>
+            <img id="modalImage" src="" alt="Imagem ampliada">
+            <div class="lightbox-arrow right" id="lightboxNext" aria-label="Próxima">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
     <!-- Rodapé -->
     <footer class="footer">
         <div class="footer-container">
@@ -272,6 +292,118 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            const content = document.querySelector('.post-content');
+            const images = Array.from(content.querySelectorAll('img'));
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const counter = document.getElementById('lightboxCounter');
+
+            let idx = 0;
+
+            function update() {
+                const total = images.length;
+                img.src = images[idx].src;
+                counter.textContent = (idx + 1) + '/' + total;
+            }
+
+            function openAt(i) {
+                idx = (i + images.length) % images.length;
+                update();
+                modal.classList.add('active');
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+            }
+
+            function crossfadeTo(newIndex) {
+                const onFadeOutEnd = () => {
+                    img.removeEventListener('transitionend', onFadeOutEnd);
+                    idx = (newIndex + images.length) % images.length;
+                    update();
+                    void img.offsetWidth;
+                    img.classList.remove('fading-out');
+                    img.classList.add('fading-in');
+                    img.addEventListener('transitionend', function onInEnd() {
+                        img.removeEventListener('transitionend', onInEnd);
+                        img.classList.remove('fading-in');
+                    });
+                };
+                img.classList.add('fading-out');
+                img.addEventListener('transitionend', onFadeOutEnd);
+            }
+
+            function next() { crossfadeTo(idx + 1); }
+            function prev() { crossfadeTo(idx - 1); }
+
+            images.forEach((image, i) => {
+                image.style.cursor = 'pointer';
+                image.addEventListener('click', () => openAt(i));
+            });
+
+            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+            closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') next();
+                if (e.key === 'ArrowLeft') prev();
+            });
+
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+
+            function onTouchStart(ev) {
+                if (!modal.classList.contains('active')) return;
+                const t = ev.touches[0];
+                touchStartX = t.clientX;
+                touchStartY = t.clientY;
+                isSwiping = true;
+            }
+
+            function onTouchMove(ev) {
+                if (!isSwiping) return;
+                const dx = ev.touches[0].clientX - touchStartX;
+                const dy = ev.touches[0].clientY - touchStartY;
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    ev.preventDefault();
+                }
+            }
+
+            function onTouchEnd(ev) {
+                if (!isSwiping) return;
+                isSwiping = false;
+                const touch = ev.changedTouches[0];
+                const dx = touch.clientX - touchStartX;
+                const dy = touch.clientY - touchStartY;
+
+                const horizontal = Math.abs(dx) > Math.abs(dy);
+                const threshold = Math.min(window.innerWidth * 0.12, 80);
+
+                if (horizontal && Math.abs(dx) > threshold) {
+                    if (dx < 0) next();
+                    else prev();
+                }
+            }
+
+            modal.addEventListener('touchstart', onTouchStart, { passive: true });
+            modal.addEventListener('touchmove', onTouchMove, { passive: false });
+            modal.addEventListener('touchend', onTouchEnd, { passive: true });
+        })();
+    </script>
 </body>
 
 </html>
