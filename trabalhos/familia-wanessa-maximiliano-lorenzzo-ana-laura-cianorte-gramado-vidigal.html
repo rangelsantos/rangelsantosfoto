@@ -4,31 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anna Julia | Festa de 15 Anos | Maringá/PR | Rangel Santos Fotografia</title>
+    <title>Wanessa + Maximiliano + Ana Laura + Lorenzzo | Ensaio de Família | Cianorte/PR | Rangel Santos Fotografia
+    </title>
     <meta name="description"
-        content="Festa de 15 anos da Anna Julia na Churrascaria Nativas Grill em Maringá. Veja as fotos dessa linda festa de debutante realizada em dezembro de 2025.">
+        content="Ensaio de família de Wanessa, Maximiliano, Ana Laura e Lorenzzo no gramado do distrito de Vidigal em Cianorte. Um entardecer nublado com luz maravilhosa e momentos especiais em família.">
     <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
     <link rel="canonical"
-        href="https://rangelsantos.com.br/blog/aniversario-anna-julia-churrascaria-nativas-grill.html">
+        href="https://rangelsantos.com.br/trabalhos/familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal.html">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url"
-        content="https://rangelsantos.com.br/blog/aniversario-anna-julia-churrascaria-nativas-grill.html">
-    <meta property="og:title" content="Anna Julia | Festa de 15 Anos | Maringá/PR">
-    <meta property="og:description" content="Festa de 15 anos da Anna Julia na Churrascaria Nativas Grill em Maringá.">
+        content="https://rangelsantos.com.br/trabalhos/familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal.html">
+    <meta property="og:title" content="Wanessa + Maximiliano + Ana Laura + Lorenzzo | Ensaio de Família | Cianorte/PR">
+    <meta property="og:description"
+        content="Ensaio de família de Wanessa, Maximiliano, Ana Laura e Lorenzzo no gramado do distrito de Vidigal em Cianorte. Um entardecer nublado com luz maravilhosa e momentos especiais em família.">
     <meta property="og:image"
-        content="https://rangelsantos.com.br/blog/aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-01.jpg">
+        content="https://rangelsantos.com.br/trabalhos/familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-01.jpg">
     <meta property="og:locale" content="pt_BR">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Anna Julia | Festa de 15 Anos | Maringá/PR">
-    <meta name="twitter:description" content="Festa de 15 anos da Anna Julia na Churrascaria Nativas Grill em Maringá.">
+    <meta name="twitter:title" content="Wanessa + Maximiliano + Ana Laura + Lorenzzo | Ensaio de Família | Cianorte/PR">
+    <meta name="twitter:description"
+        content="Ensaio de família de Wanessa, Maximiliano, Ana Laura e Lorenzzo no gramado de Vidigal em Cianorte.">
     <meta name="twitter:image"
-        content="https://rangelsantos.com.br/blog/aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-01.jpg">
+        content="https://rangelsantos.com.br/trabalhos/familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-01.jpg">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/rangel-santos-page-logo.png">
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../blog.css">
+    <link rel="stylesheet" href="../trabalhos.css">
     <link rel="stylesheet" href="../portfolio.css">
 </head>
 
@@ -54,7 +57,7 @@
                 <li><a href="../index.html" class="nav-link">Home</a></li>
                 <li><a href="../portfolio.html" class="nav-link">Portfólio</a></li>
                 <li><a href="../proposta-casamento.html" class="nav-link">Proposta</a></li>
-                <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../trabalhos.html" class="nav-link active">Trabalhos</a></li>
                 <li><a href="../contato.html" class="nav-link">Contato</a></li>
             </ul>
 
@@ -88,7 +91,7 @@
                 <li><a href="../index.html" class="nav-link">Home</a></li>
                 <li><a href="../portfolio.html" class="nav-link">Portfólio</a></li>
                 <li><a href="../proposta-casamento.html" class="nav-link">Proposta</a></li>
-                <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../trabalhos.html" class="nav-link active">Trabalhos</a></li>
                 <li><a href="../contato.html" class="nav-link">Contato</a></li>
             </ul>
             <div class="mobile-contacts" aria-label="Contatos">
@@ -110,21 +113,20 @@
     </nav>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
-            const body = document.body;
             const mobilePanel = document.getElementById('mobilePanel');
 
-            function toggleMenu() {
-                const isOpen = body.classList.toggle('nav-open');
-                hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            }
+            hamburger?.addEventListener('click', () => {
+                document.body.classList.toggle('nav-open');
+                const expanded = document.body.classList.contains('nav-open');
+                hamburger.setAttribute('aria-expanded', expanded);
+            });
 
-            hamburger.addEventListener('click', toggleMenu);
-            hamburger.addEventListener('keypress', (e) => {
+            hamburger?.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    toggleMenu();
+                    hamburger.click();
                 }
             });
 
@@ -143,45 +145,54 @@
     <!-- Cabeçalho do Post -->
     <section class="post-header">
         <div class="post-header-container">
-            <h1 class="post-title">Anna Julia</h1>
-            <p class="post-excerpt">Festa de 15 Anos - Maringá/PR</p>
+            <h1 class="post-title">Wanessa + Maximiliano + Ana Laura + Lorenzzo</h1>
+            <p class="post-excerpt">Ensaio de Família - Vidigal, Cianorte/PR</p>
         </div>
     </section>
 
     <!-- Conteúdo do Post -->
     <section class="post-content-section">
         <div class="post-content">
-            <img src="aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-01.jpg"
-                alt="Decoração da festa de debutante da Anna Julia na Churrascaria Nativas Grill em Maringá">
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-09.jpg"
+                alt="Família Wanessa, Maximiliano, Ana Laura e Lorenzzo deitados no gramado de Vidigal em Cianorte">
 
-            <p>A Anna Julia é uma pessoa incrível, um doce de menina! Fui muito
-                bem recebido por ela e por sua família, que cuidou de cada detalhe dessa festa linda na
-                Churrascaria Nativas Grill em Maringá</p>
+            <p>Tivemos a honra de registrar momentos especiais com a família do casal Wanessa e Maximiliano e seus
+                filhos Ana Laura e Lorenzzo. O ensaio foi realizado no gramado do distrito de Vidigal, em Cianorte,
+                durante o entardecer de um dia nublado, e olha... que luz maravilhosa esse céu nos presenteou!</p>
 
-            <p>Minha paixão de modo geral é fotografar pessoas, é registrar um momento único em suas vidas, é poder
-                eternizar um momento, e saber que daqui 30 anos ou mais, essas pessoas vão olhar minhas fotografias
-                e reviver em seus corações aquele momento incrível que viveram.</p>
+            <p>O clima nublado trouxe uma iluminação suave e difusa, perfeita para fotografar. Todos combinaram roupas
+                em tons de branco e jeans, criando uma harmonia visual que ficou lindo nas fotos!</p>
 
-            <p>Queria deixar aqui a minha eterna gratidão por poder registrar um momento que com certeza ficará
-                para a história na família de vocês! Se você também está planejando uma festa de debutante ou
-                qualquer outra celebração especial, entre em contato. Será um prazer conversar sobre como posso
-                registrar esses momentos únicos!</p>
+            <p>Se você também quer eternizar momentos assim com a sua família, entre em contato conosco! Vamos adorar
+                criar memórias inesquecíveis para vocês!</p>
 
-            <img src="aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-02.jpg"
-                alt="Anna Julia com vestido rosa ao lado da mesa de decoração na festa de debutante">
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-01.jpg"
+                alt="Família completa caminhando de mãos dadas no gramado de Vidigal durante o pôr do sol em Cianorte">
 
-            <img src="aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-03.jpg"
-                alt="Retrato de Anna Julia sorrindo durante sua festa de debutante em Maringá">
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-02.jpg"
+                alt="Casal Wanessa e Maximiliano em momento romântico durante ensaio de família em Cianorte">
 
-            <img src="aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-04.jpg"
-                alt="Anna Julia ao lado do bolo de debutante na Churrascaria Nativas Grill">
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-03.jpg"
+                alt="Wanessa e Maximiliano com os filhos Ana Laura e Lorenzzo no gramado verde de Vidigal">
 
-            <img src="aniversario-anna-julia-churrascaria-nativas-grill/aniversario-15-anos-anna-julia-nativas-grill-maringa-05.jpg"
-                alt="Anna Julia segurando o número 15 em foto artística durante festa de debutante">
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-04.jpg"
+                alt="Ana Laura e Lorenzzo brincando durante o ensaio de família no entardecer em Vidigal Cianorte">
+
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-05.jpg"
+                alt="Maximiliano brincando com os filhos Lorenzzo e Ana Laura no gramado durante o pôr do sol">
+
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-06.jpg"
+                alt="Wanessa caminhando de mãos dadas com Ana Laura e Lorenzzo no entardecer nublado em Vidigal">
+
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-07.jpg"
+                alt="Família Wanessa Maximiliano Lorenzzo e Ana Laura deitados na grama sorrindo vista de cima">
+
+            <img src="familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-gramado-vidigal/ensaio-familia-wanessa-maximiliano-lorenzzo-ana-laura-cianorte-vidigal-08.jpg"
+                alt="Família empilhada em pose divertida no gramado de Vidigal Cianorte com céu nublado">
 
             <!-- Navegação -->
             <div class="post-navigation">
-                <a href="../blog.html" class="back-to-blog">← Voltar ao blog</a>
+                <a href="../trabalhos.html" class="back-to-blog">← Voltar aos trabalhos</a>
             </div>
         </div>
     </section>
