@@ -81,21 +81,7 @@
 
     <link rel="icon" type="image/png" href="assets/rangel-santos-page-logo.png">
     <link rel="stylesheet" href="styles.css">
-    <!-- Evitar salto visual: posição inicial consistente (fallback) -->
-    <style>
-        /* Garante que todas as imagens do hero iniciem alinhadas com fallback
-         Assim, quando a detecção terminar, apenas alguns slides terão ajuste fino
-         e a maioria não mudará de posição visivelmente */
-        .hero-slide {
-            background-position: center 20% !important;
-        }
 
-        /* Opcional: suaviza qualquer ajuste residual de posição aplicado via JS */
-        .hero-slide {
-            transition: background-position 300ms ease;
-        }
-    </style>
-    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22/dist/face-api.min.js"></script>
 </head>
 
 <body class="home-page">
@@ -200,36 +186,38 @@
 
     <section class="hero-slider" aria-label="Galeria destaque">
         <div class="hero-slider__viewport" id="heroViewport">
+            <!-- Slide 1: carregamento imediato (LCP) -->
             <div class="hero-slide is-active" data-index="0" role="img" aria-label="Imagem destaque 1"
-                style="background-image:url('assets/carousel/carousel_01.jpg')"></div>
+                style="background-image:url('assets/carousel/carousel_01.jpg'); background-position: center 20%"></div>
+            <!-- Slides 2–15: lazy-load via data-bg -->
             <div class="hero-slide" data-index="1" role="img" aria-label="Imagem destaque 2"
-                style="background-image:url('assets/carousel/carousel_02.jpg')"></div>
+                data-bg="assets/carousel/carousel_02.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="2" role="img" aria-label="Imagem destaque 3"
-                style="background-image:url('assets/carousel/carousel_03.jpg')"></div>
+                data-bg="assets/carousel/carousel_03.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="3" role="img" aria-label="Imagem destaque 4"
-                style="background-image:url('assets/carousel/carousel_04.jpg')"></div>
+                data-bg="assets/carousel/carousel_04.jpg" style="background-position: center 31%"></div>
             <div class="hero-slide" data-index="4" role="img" aria-label="Imagem destaque 5"
-                style="background-image:url('assets/carousel/carousel_05.jpg')"></div>
+                data-bg="assets/carousel/carousel_05.jpg" style="background-position: center 40%"></div>
             <div class="hero-slide" data-index="5" role="img" aria-label="Imagem destaque 6"
-                style="background-image:url('assets/carousel/carousel_06.jpg')"></div>
+                data-bg="assets/carousel/carousel_06.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="6" role="img" aria-label="Imagem destaque 7"
-                style="background-image:url('assets/carousel/carousel_07.jpg')"></div>
+                data-bg="assets/carousel/carousel_07.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="7" role="img" aria-label="Imagem destaque 8"
-                style="background-image:url('assets/carousel/carousel_08.jpg')"></div>
+                data-bg="assets/carousel/carousel_08.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="8" role="img" aria-label="Imagem destaque 9"
-                style="background-image:url('assets/carousel/carousel_09.jpg')"></div>
+                data-bg="assets/carousel/carousel_09.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="9" role="img" aria-label="Imagem destaque 10"
-                style="background-image:url('assets/carousel/carousel_10.jpg')"></div>
+                data-bg="assets/carousel/carousel_10.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="10" role="img" aria-label="Imagem destaque 11"
-                style="background-image:url('assets/carousel/carousel_11.jpg')"></div>
+                data-bg="assets/carousel/carousel_11.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="11" role="img" aria-label="Imagem destaque 12"
-                style="background-image:url('assets/carousel/carousel_12.jpg')"></div>
+                data-bg="assets/carousel/carousel_12.jpg" style="background-position: center 43%"></div>
             <div class="hero-slide" data-index="12" role="img" aria-label="Imagem destaque 13"
-                style="background-image:url('assets/carousel/carousel_13.jpg')"></div>
+                data-bg="assets/carousel/carousel_13.jpg" style="background-position: center 20%"></div>
             <div class="hero-slide" data-index="13" role="img" aria-label="Imagem destaque 14"
-                style="background-image:url('assets/carousel/carousel_14.jpg')"></div>
+                data-bg="assets/carousel/carousel_14.jpg" style="background-position: center 33%"></div>
             <div class="hero-slide" data-index="14" role="img" aria-label="Imagem destaque 15"
-                style="background-image:url('assets/carousel/carousel_15.jpg')"></div>
+                data-bg="assets/carousel/carousel_15.jpg" style="background-position: center 32%"></div>
             <div class="hero-slider__overlay"></div>
 
             <div class="hero-dots" id="heroDots" role="tablist" aria-label="Navegação de slides"></div>
@@ -354,7 +342,18 @@
                 });
             }
 
+            // Carrega a imagem de fundo sob demanda (lazy-load)
+            function loadSlideBg(slide) {
+                if (slide && slide.dataset.bg) {
+                    slide.style.backgroundImage = `url('${slide.dataset.bg}')`;
+                    delete slide.dataset.bg;
+                }
+            }
+
             function setActive(i, fromUser = false) {
+                // Lazy-load: carrega o slide atual e o próximo
+                loadSlideBg(slides[i]);
+                loadSlideBg(slides[(i + 1) % slides.length]);
                 slides.forEach(s => s.classList.remove('is-active'));
                 slides[i]?.classList.add('is-active');
                 updateDots(i);
@@ -451,88 +450,33 @@
         })();
     </script>
 
-    <script>
-        // Detect faces in hero slider images and vertically center them (with 20% downward fallback when none is detected)
-        // Evita salto visual: já iniciamos com background-position via CSS (center 20%).
-        // Aqui só refinamos quando há detecção, mantendo a mesma posição para os demais.
-        window.addEventListener('load', () => {
-            (async function () {
-                if (!window.faceapi) {
-                    console.warn('face-api.js não carregado');
-                    // Nada a fazer: CSS já garantiu fallback visual consistente
-                    return;
-                }
-                try {
-                    console.log('Carregando pesos TinyFaceDetector...');
-                    await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
-                    console.log('Pesos carregados');
-                } catch (e) {
-                    console.error('Erro ao carregar pesos do face-api:', e);
-                    // Mantém fallback do CSS
-                    return;
-                }
-                const slides = document.querySelectorAll('.hero-slide');
-                for (const slide of slides) {
-                    // Extrai URL da imagem de fundo
-                    const match = /url\(["']?(.*?)["']?\)/.exec(slide.style.backgroundImage || getComputedStyle(slide).backgroundImage);
-                    if (!match || !match[1]) {
-                        continue;
-                    }
-                    const imgUrl = match[1];
-                    const img = new Image();
-                    img.src = imgUrl;
-                    await new Promise(res => {
-                        img.onload = res;
-                        img.onerror = res;
-                    });
-                    let detections = [];
-                    try {
-                        detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-                    } catch (e) {
-                        console.error('Detecção falhou para', imgUrl, e);
-                    }
-                    if (!detections.length) {
-                        // Não altera nada: mantém posição inicial definida via CSS (evita salto)
-                        console.log('Nenhum rosto detectado em', imgUrl, '-> mantendo fallback CSS 20%');
-                        continue;
-                    }
-                    // Calcula centro vertical médio dos rostos
-                    const centers = detections.map(d => d.box.y + d.box.height / 2);
-                    const avgY = centers.reduce((a, b) => a + b, 0) / centers.length;
-                    const pct = (avgY / img.height) * 100;
-                    // Limita valor entre 0 e 100
-                    const pctClamped = Math.max(0, Math.min(100, pct));
-                    // Só aplica se for significativamente diferente do fallback para evitar micro-ajustes
-                    const delta = Math.abs(pctClamped - 20);
-                    if (delta > 3) { // threshold de 3% para não causar percepções de flicker
-                        slide.style.backgroundPosition = `center ${pctClamped}%`;
-                        console.log('Ajustado', imgUrl, 'para', pctClamped, '%');
-                    } else {
-                        console.log('Detecção próxima ao fallback (', pctClamped, '% ). Mantendo 20% para evitar salto.');
-                    }
-                }
-            })();
-        });
-    </script>
+
 
     <!-- Seção Instagram Feed -->
     <section class="instagram-feed" style="background: #372e27; padding: 0px 0; overflow: hidden;">
         <div class="embedsocial-hashtag" data-ref="dbeec41df8621bd0316318d704e625a0e04d9fd0">
             <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding"
                 href="https://embedsocial.com/social-media-aggregator/" target="_blank" title="Instagram widget">
-                <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial">
+                <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial" loading="lazy">
                 <div class="es-widget-branding-text">Instagram widget</div>
             </a>
         </div>
         <script>
-            (function (d, s, id) {
-                var js;
-                if (d.getElementById(id)) { return; }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "https://embedsocial.com/cdn/ht.js";
-                d.getElementsByTagName("head")[0].appendChild(js);
-            }(document, "script", "EmbedSocialHashtagScript"));
+            // Lazy-load: carrega o widget do Instagram apenas quando o usuário rolar perto da seção
+            (function () {
+                var feedSection = document.querySelector('.instagram-feed');
+                if (!feedSection) return;
+                var observer = new IntersectionObserver(function (entries) {
+                    if (entries[0].isIntersecting) {
+                        observer.disconnect();
+                        var js = document.createElement('script');
+                        js.id = 'EmbedSocialHashtagScript';
+                        js.src = 'https://embedsocial.com/cdn/ht.js';
+                        document.head.appendChild(js);
+                    }
+                }, { rootMargin: '300px' });
+                observer.observe(feedSection);
+            })();
         </script>
     </section>
 
