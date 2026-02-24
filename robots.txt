@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Disallow: /_fonts.html
 
 # Sitemap location
 Sitemap: https://rangelsantos.com.br/sitemap.xml
