@@ -587,6 +587,12 @@ body.home-page.nav-open .navbar {
     margin-left: 10px;
 }
 
+/* Oculta o botão do WhatsApp quando a galeria/modal está aberta */
+.modal.active ~ #whatsapp-float,
+.modal[style*="display: flex"] ~ #whatsapp-float,
+.proposal-modal.active ~ #whatsapp-float {
+    display: none !important;
+}
 
 /* Quando o menu mobile está aberto na HOME, aplicar fundo translúcido escuro (overlay suave) */
 body.home-page.nav-open .navbar {
