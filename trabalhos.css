@@ -269,6 +269,58 @@
 }
 
 /* =====================================================
+   Seção "Veja também" - Prévias em posts individuais
+   ===================================================== */
+
+.post-related {
+    max-width: 620px;
+    margin: 60px auto 0;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.post-related h2 {
+    font-size: 22px;
+    font-weight: 400;
+    color: #2a2a2a;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.post-related-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+}
+
+.post-related .blog-card-image img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin: 0;
+    border-radius: 0;
+}
+
+.post-related .blog-card-content {
+    padding: 0px 16px 20px;
+}
+
+.post-related .blog-card-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.post-related .blog-card-excerpt {
+    font-size: 14px;
+    margin-bottom: 14px;
+    margin-top: 0px;
+}
+
+.post-related .blog-card-link {
+    font-size: 13px;
+}
+
+/* =====================================================
    Responsividade
    ===================================================== */
 
@@ -333,6 +385,21 @@
     .post-navigation {
         margin-top: 50px;
         padding-top: 30px;
+    }
+
+    .post-related-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+
+    .post-related {
+        margin-top: 40px;
+        padding-top: 30px;
+    }
+
+    .post-related h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 }
 
