@@ -417,18 +417,8 @@
             setActive(index);
             start();
 
-            // Header sólida ao rolar
-            const onScroll = () => {
-                // Apenas páginas internas devem ganhar cabeçalho sólido ao rolar
-                if (!document.body.classList.contains('inner-page')) return;
-                if (window.scrollY > 10) {
-                    document.body.classList.add('scrolled');
-                } else {
-                    document.body.classList.remove('scrolled');
-                }
-            };
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
+
+
 
             // Expor modal utilitário
             window.openCarouselModal = function (imageSrc) {

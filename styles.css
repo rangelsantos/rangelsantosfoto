@@ -539,16 +539,7 @@ body.home-page.nav-open .navbar {
     }
 }
 
-/* Removemos completamente os elementos antigos do carrossel */
-.carousel-section,
-.carousel-container,
-.carousel-track,
-.carousel-slide,
-.carousel-controls,
-.carousel-dots,
-.dot {
-    display: none !important;
-}
+
 
 /* Modal do Carrossel */
 .modal {
@@ -964,11 +955,7 @@ body.home-page.nav-open .navbar {
         pointer-events: none;
     }
 
-    /* Fallback: visible border in case pseudo-element is interfered with by other rules */
-    .mobile-panel ul.mobile-nav li a.nav-link.active {
-        border-bottom: 2px solid #2a2a2a;
-        padding-bottom: 6px;
-    }
+
 }
 
 /* Mobile panel safe width + insets to avoid overflow on real devices with notches, scrollbars, or UI chrome */
