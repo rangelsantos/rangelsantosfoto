@@ -330,7 +330,7 @@
     <script>
         (function () {
             const content = document.querySelector('.post-content');
-            const images = Array.from(content.querySelectorAll('img'));
+            const images = Array.from(content.querySelectorAll('img:not(.post-related img)'));
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
             const closeBtn = document.getElementById('lightboxClose');
