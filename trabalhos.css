@@ -383,18 +383,18 @@
     }
 
     .post-navigation {
-        margin-top: 50px;
-        padding-top: 30px;
+        margin-top: 60px;
+        padding-top: 40px;
     }
 
     .post-related-grid {
         grid-template-columns: 1fr !important;
-        gap: 24px !important;
+        gap: 32px !important;
     }
 
     .post-related {
-        margin-top: 40px;
-        padding-top: 30px;
+        margin-top: 60px;
+        padding-top: 40px;
     }
 
     .post-related h2 {
