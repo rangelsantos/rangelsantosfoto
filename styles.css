@@ -1060,7 +1060,19 @@ body.home-page.nav-open .navbar {
 
 .trabalhos-preview {
     padding: 0;
-    background-color: #ffffff;
+    background-color: #fafafa;
+}
+
+.trabalhos-preview-header {
+    text-align: center;
+    padding: 0px 40px 40px;
+}
+
+.trabalhos-preview-header h2 {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #2a2a2a;
 }
 
 .trabalhos-preview-grid {
@@ -1164,13 +1176,20 @@ body.home-page.nav-open .navbar {
         gap: 2px;
     }
 
-    /* Mobile: mostra apenas 2 itens (1x2) */
-    .trabalhos-thumb:nth-child(n+3) {
+    /* Mobile: mostra apenas 3 itens (1x3) */
+    .trabalhos-thumb:nth-child(n+4) {
         display: none;
     }
 
     .trabalhos-thumb-overlay {
         padding: 10px;
+        opacity: 1;
+        transition: none;
+        background: none;
+    }
+
+    .trabalhos-thumb:hover img {
+        transform: none;
     }
 
     .trabalhos-thumb-title {
